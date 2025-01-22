@@ -10,13 +10,16 @@ LDFLAGS    	= -lreadline
 IFLAGS		= -I $(INCLUDES)
 MAKEFLAGS	= -j$(nproc) --no-print-directory
 
-NAME		= minishell
+NAME		= cub3d
 
 SRCSDIR		= srcs
 INCLUDES	= includes
 
 SRCS		= \
 			$(SRCSDIR)/main.c \
+			$(SRCSDIR)/map_tools/map_parser.c \
+			$(SRCSDIR)/test_tools/print.c \
+			$(SRCSDIR)/freeing/freeing.c \
 
 OBJSDIR		= objs
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
