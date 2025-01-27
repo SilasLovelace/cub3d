@@ -10,7 +10,7 @@ LDFLAGS    	= -lreadline
 IFLAGS		= -I $(INCLUDES)
 MAKEFLAGS	= -j$(nproc) --no-print-directory
 
-NAME		= cub3d
+NAME		= cub3D
 
 SRCSDIR		= srcs
 INCLUDES	= includes
