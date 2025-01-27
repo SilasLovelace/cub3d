@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:38:05 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/22 15:50:35 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:41:43 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 #include "functions.h"
 #include "../libft/libft.h"
 #include <stdio.h>
+#include <fcntl.h>
 
 #endif

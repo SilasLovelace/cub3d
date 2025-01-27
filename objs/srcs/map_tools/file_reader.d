@@ -1,4 +1,4 @@
-objs/srcs/map_tools/map_parser.o: srcs/map_tools/map_parser.c \
+objs/srcs/map_tools/file_reader.o: srcs/map_tools/file_reader.c \
   includes/cub3d.h includes/makros.h includes/functions.h \
   includes/structs.h includes/../libft/libft.h /usr/include/unistd.h \
   /usr/include/features.h /usr/include/features-time64.h \

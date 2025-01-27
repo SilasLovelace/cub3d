@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:07:34 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/22 16:35:57 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:44:58 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	print_memory(void)
         printf("West texture: %s\n", m->resources->west_texture);
     if (m->resources->east_texture)
         printf("East texture: %s\n", m->resources->east_texture);
-    printf("Ceiling texture: %d\n", m->resources->ceiling_texture);
+    printf("Ceiling texture: %d\n", m->resources->ceiling_color);
     printf("Floor color: %d\n", m->resources->floor_color);
 }
