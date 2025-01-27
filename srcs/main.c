@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/22 16:25:01 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:08:58 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ int	main(int ac, char **av)
             print_memory();
         }
 	}
-	
+    else
+    {
+        printf("Error\nInvalid number of arguments!\n");
+    }
+    
+    run_game();
+    
 	return (0);
 }
