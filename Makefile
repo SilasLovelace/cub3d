@@ -17,6 +17,7 @@ INCLUDES	= includes
 SRCS		= \
 			$(SRCSDIR)/main.c \
 			$(SRCSDIR)/map_tools/map_parser.c \
+			$(SRCSDIR)/map_tools/file_reader.c \
 			$(SRCSDIR)/test_tools/print.c \
 			$(SRCSDIR)/freeing/freeing.c \
 			$(SRCSDIR)/game/run_game.c \

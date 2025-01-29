@@ -6,11 +6,18 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/22 16:34:18 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:10:00 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+char*	find_next_comma(char* str)
+{
+	while (*str && *str != ',')
+		str++;
+	return (str);
+}
 
 char* skip_whitespace(char* str)
 {
@@ -47,11 +54,61 @@ char	**get_resource_dest(char *identifier)
 		|| (!ft_strncmp(identifier, "SO ", 3) && get_memory()->resources->south_texture)
 		|| (!ft_strncmp(identifier, "WE ", 3) && get_memory()->resources->west_texture)
 		|| (!ft_strncmp(identifier, "EA ", 3) && get_memory()->resources->east_texture))
-	{
-		printf("Error! Multiple texture paths for the same direction: %s\n", identifier);
-		free_memory();	
-	}
+		printf("Error! Multiple definitions for the same element: %s\n", identifier);
 	return (NULL);
+}
+
+int	*get_color_dest(char *identifier)
+{
+	if (!ft_strncmp(identifier, "C ", 2) && get_memory()->resources->ceiling_color == -1)
+		return (&(get_memory()->resources->ceiling_color));
+	if (!ft_strncmp(identifier, "F ", 2) && get_memory()->resources->floor_color == -1)
+		return (&(get_memory()->resources->floor_color));
+	if ((!ft_strncmp(identifier, "C ", 2) && get_memory()->resources->ceiling_color != -1)
+		|| (!ft_strncmp(identifier, "F ", 2) && get_memory()->resources->floor_color != -1))
+		printf("Error! Multiple definitions for the same element: %s\n", identifier);
+	return (NULL);
+}
+int parse_number(char* str, char term)
+{
+	int i;
+	char	*start;
+	
+	i = 0;
+	start = str;
+	while (*str && ft_isdigit(*str))
+	{
+		str++;
+		i++;
+	}
+	if (i > 3 || (*str != term && *str != '\n') || ft_atoi(start) > 255)
+		return (-1);
+	return (i);
+}
+
+int	is_valid_RGB(char *str)
+{
+	int		color;
+	
+	if (parse_number(str, ',') >= 0)
+	{
+		color = ft_atoi(str) * 256 * 256;
+		str += parse_number(str, ',') + 1;
+	}
+	else
+		return (-1);
+	if (parse_number(str, ',') >= 0)
+	{
+		color += ft_atoi(str) * 256 ;
+		str += parse_number(str, ',') + 1;
+	}
+	else
+		return (-1);
+	if (parse_number(str, ' ') >= 0)
+		color += ft_atoi(str);
+	else
+		return (-1);
+	return (color);
 }
 
 int is_valid_resource(char* line)
@@ -69,23 +126,28 @@ int is_valid_resource(char* line)
 		begin_info = skip_whitespace(first_non_ws + 2);
 		if (!ft_strncmp(begin_info, "./", 2) && *(begin_info + 2) != ' ')
 		{
-			end_info = skip_non_whitespace(begin_info + 2) - 1;
-			if (!(*(end_info + 1) == '\0' || *skip_whitespace(end_info + 1) == '\0') || !get_resource_dest(first_non_ws))
+			end_info = skip_non_whitespace(begin_info + 2);
+			if (!(*(end_info) == '\0' || *skip_whitespace(end_info) == '\n') || !get_resource_dest(first_non_ws))
 				return (0);
-			*get_resource_dest(first_non_ws) = ft_substr(begin_info, 0, end_info - begin_info + 1);
+			*(char**)get_resource_dest(first_non_ws) = ft_substr(begin_info, 0, end_info - begin_info);
 			return (1);
 		}
+		return (0);
 	}
-	// if (ft_strncmp(first_non_ws, "S ", 2)
-	// || ft_strncmp(first_non_ws, "F ", 2))
-	// {
-	// 	begin_info = skip_whitespace(first_non_ws + 1);
-	// }
-	// 	return (0);
-	return (0);
+	else if (!ft_strncmp(first_non_ws, "C ", 2)
+	|| !ft_strncmp(first_non_ws, "F ", 2))
+	{
+		begin_info = skip_whitespace(first_non_ws + 1);
+		if (is_valid_RGB(begin_info) >= 0)
+		{
+			end_info = skip_non_whitespace(begin_info);
+			if (!(*(end_info) == '\0' || *skip_whitespace(end_info) == '\n') || !get_color_dest(first_non_ws))
+				return (0);
+			*get_color_dest(first_non_ws) = is_valid_RGB(begin_info);
+			return (1);
+		}
+		return (0);
+	}
+	else
+		return (0);
 }
-
-// int resource_paths_are_valid(char* path)
-// {
-// 	return (is_valid_map_name(path));
-// }

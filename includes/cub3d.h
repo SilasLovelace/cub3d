@@ -22,5 +22,6 @@
 # include <X11/X.h>
 
 #include <stdio.h>
+#include <fcntl.h>
 
 #endif

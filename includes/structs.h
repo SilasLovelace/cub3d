@@ -19,7 +19,7 @@ typedef struct s_map_resources
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
-	int		ceiling_texture;
+	int		ceiling_color;
 	int		floor_color;
 	void	*mlx;
 	void	*window;
@@ -29,6 +29,7 @@ typedef struct s_map_resources
 typedef struct s_memory
 {
 	t_map_resources	*resources;
+	char 		  **map;
 }	t_memory;
 
 #endif

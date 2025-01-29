@@ -21,10 +21,14 @@ void	free_memory(void);
 //test_tools/print_states.c
 void   print_memory(void);
 
-// map_tools/map_parser.c
+// map_tools
+    //map_parser.c
 
 int is_valid_map_name (char* map_name);
 int is_valid_resource(char* line);
+
+    //file_reader.c
+char    **read_file_lines(const char *filename);
 
 //main.c
 t_memory    *get_memory(void);
