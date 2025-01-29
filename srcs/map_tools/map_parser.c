@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/27 18:10:00 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:05:25 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,4 +150,68 @@ int is_valid_resource(char* line)
 	}
 	else
 		return (0);
+}
+
+int is_valid_map(char** map)
+{
+    int i;
+    int j;
+    int player_found;
+    
+    if (!map || !map[0])
+        return (0);
+    i = 0;
+    player_found = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] == ' ')
+            {
+                j++;
+                continue;
+            }
+			if (!ft_strchr("01NSEW\n", map[i][j]))
+			{
+				printf("Error! Invalid character '%c' at line %d, position %d\n", map[i][j], i + 1, j + 1);
+                return (0);
+            }
+			if (ft_strchr("NSEW", map[i][j]))
+            {
+                if (player_found)
+                {
+                    printf("Error! Multiple players found at line %d, position %d\n", 
+                           i + 1, j + 1);
+                    return (0);
+                }
+                player_found = 1;
+            }
+			if (ft_strchr("0NSEW", map[i][j]))
+            {
+                if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1])
+                {
+                    printf("Error! Map not closed at line %d, position %d\n", 
+                           i + 1, j + 1);
+                    return (0);
+                }
+                if (j >= (int)ft_strlen(map[i - 1]) || j >= (int)ft_strlen(map[i + 1]) ||
+                    map[i - 1][j] == ' ' || map[i + 1][j] == ' ' ||
+                    map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+                {
+                    printf("Error! Map not properly closed at line %d, position %d\n", 
+                           i + 1, j + 1);
+                    return (0);
+                }
+            }
+            j++;
+        }
+        i++;
+    }
+    if (!player_found)
+    {
+        printf("Error! No player found in map\n");
+        return (0);
+    }
+    return (1);
 }

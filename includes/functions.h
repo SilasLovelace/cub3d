@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/27 17:27:01 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:20:03 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void   print_memory(void);
 
 int is_valid_map_name (char* map_name);
 int is_valid_resource(char* line);
+int is_valid_map(char** line);
 
     //file_reader.c
 char    **read_file_lines(const char *filename);

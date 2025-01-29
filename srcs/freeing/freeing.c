@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:32:08 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/27 16:24:40 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:56:16 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ void	free_memory(void)
             free(m->resources->west_texture);
         if (m->resources->east_texture)
             free(m->resources->east_texture);
+        if (m->map)
+        {
+            int i = 0;
+            while (m->map[i])
+            {
+                free(m->map[i]);
+                i++;
+            }
+            free(m->map);
+        }
         free(m->resources);
     }
     free(m);
