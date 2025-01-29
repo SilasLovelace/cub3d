@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/27 18:12:12 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:07:36 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_map_resources
 typedef struct s_memory
 {
 	t_map_resources	*resources;
-	char 		  **map;
+	char			**map;
+	int				map_start_row;
 }	t_memory;
 
 #endif

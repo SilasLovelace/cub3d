@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 16:36:34 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:10:31 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ int	main(int ac, char **av)
                     while (*(temp[line]) == '\n' )
                         line++;
                     if (is_valid_map(temp + line))
+                    {
+                        get_memory()->map_start_row = line;
                         printf("Map input valid\n\n");
+                    }
                     break;
                 }
                 if (!resources_full
@@ -86,8 +89,6 @@ int	main(int ac, char **av)
         else
             return (printf("Error! Invalid map name: %s\n", av[1]), 1);
         free_memory();
-        free_memory();
-
 	}
     else
     {
