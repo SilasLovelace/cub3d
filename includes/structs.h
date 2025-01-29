@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/22 15:44:11 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:12:12 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ typedef struct s_map_resources
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
-	int	  ceiling_texture;
-	int	  floor_color;
+	int		ceiling_texture;
+	int		floor_color;
+	void	*mlx;
+	void	*window;
 }   t_map_resources;
 
 
