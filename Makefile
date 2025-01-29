@@ -6,11 +6,10 @@ CC			= cc
 RM			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror -g
 DFLAGS	 	= -MD -MP
-LDFLAGS    	= -lreadline
 IFLAGS		= -I $(INCLUDES)
 MAKEFLAGS	= -j$(nproc) --no-print-directory
 
-NAME		= cub3d
+NAME		= cub3D
 
 SRCSDIR		= srcs
 INCLUDES	= includes
@@ -21,6 +20,7 @@ SRCS		= \
 			$(SRCSDIR)/map_tools/file_reader.c \
 			$(SRCSDIR)/test_tools/print.c \
 			$(SRCSDIR)/freeing/freeing.c \
+			$(SRCSDIR)/game/run_game.c \
 
 OBJSDIR		= objs
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
@@ -41,8 +41,10 @@ all		: $(NAME)
 
 $(NAME)	: ${OBJS}
 		$(MAKE) -C ${LIBDIR} all
-		$(CC) ${CFLAGS} ${DFLAGS} ${IFLAGS} -o $@ $^ ${LIBFT} ${LDFLAGS}
+		$(CC) ${CFLAGS} ${DFLAGS} ${IFLAGS} -o $@ $^ ${LIBFT} -lX11 -lXext -lmlx
 
+# -Lminilibx-linux -lmlx_Linux -lX11 -lXext
+# -lX11 -lXext -lmlx
 
 ${OBJSDIR}/%.o	: %.c
 		@mkdir -p $(dir $@)

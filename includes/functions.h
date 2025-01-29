@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/27 17:45:07 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:27:01 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ char    **read_file_lines(const char *filename);
 
 //main.c
 t_memory    *get_memory(void);
+
+//game/run_game.c
+void	run_game(void);
 
 #endif
