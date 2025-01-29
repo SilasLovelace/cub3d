@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 17:05:25 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:48:35 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 char*	find_next_comma(char* str)
 {
@@ -19,14 +19,14 @@ char*	find_next_comma(char* str)
 	return (str);
 }
 
-char* skip_whitespace(char* str)
+char*	skip_whitespace(char* str)
 {
 	while (*str && *str == ' ')
 		str++;
 	return (str);
 }
 
-char* skip_non_whitespace(char* str)
+char*	skip_non_whitespace(char* str)
 {
 	while (*str && *str != ' ')
 		str++;
@@ -69,7 +69,7 @@ int	*get_color_dest(char *identifier)
 		printf("Error! Multiple definitions for the same element: %s\n", identifier);
 	return (NULL);
 }
-int parse_number(char* str, char term)
+int	parse_number(char* str, char term)
 {
 	int i;
 	char	*start;
@@ -111,7 +111,7 @@ int	is_valid_RGB(char *str)
 	return (color);
 }
 
-int is_valid_resource(char* line)
+int	is_valid_resource(char* line)
 {
 	char*	first_non_ws;
 	char*	begin_info;
@@ -152,7 +152,7 @@ int is_valid_resource(char* line)
 		return (0);
 }
 
-int is_valid_map(char** map)
+int	is_valid_map(char** map)
 {
     int i;
     int j;
