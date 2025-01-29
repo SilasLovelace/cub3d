@@ -40,7 +40,7 @@ all		: $(NAME)
 
 $(NAME)	: ${OBJS}
 		$(MAKE) -C ${LIBDIR} all
-		$(CC) ${CFLAGS} ${DFLAGS} ${IFLAGS} -o $@ $^ ${LIBFT} -Lminilibx-linux -lmlx_Linux -lX11 -lXext
+		$(CC) ${CFLAGS} ${DFLAGS} ${IFLAGS} -o $@ $^ ${LIBFT} -lX11 -lXext -lmlx
 
 # -Lminilibx-linux -lmlx_Linux -lX11 -lXext
 # -lX11 -lXext -lmlx
