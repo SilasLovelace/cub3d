@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/30 12:43:25 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:35:42 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void run_game(void)
 		return;
 	}
 	take_images();
-	memory->mlx_data->window = mlx_new_window(memory->mlx_data->mlx, 640, 480, "cub3D");
+	memory->mlx_data->window = mlx_new_window(memory->mlx_data->mlx, memory->mlx_data->resolution_x, memory->mlx_data->resolution_y, "cub3D");
 	if (!memory->mlx_data->window)
 	{
 		printf("Error\nWindow creation failed\n");
@@ -73,6 +73,12 @@ void run_game(void)
 		memory->mlx_data->mlx = NULL;
 		return;
 	}
+
+	memory->mlx_data->img = mlx_new_image(memory->mlx_data->mlx, 
+        memory->mlx_data->resolution_x, memory->mlx_data->resolution_y);
+    memory->mlx_data->addr = mlx_get_data_addr(memory->mlx_data->img, 
+        &memory->mlx_data->bpp, &memory->mlx_data->line_length, 
+        &memory->mlx_data->endian);
 	
 	mlx_key_hook(memory->mlx_data->window, handle_input, memory);
 	mlx_hook(memory->mlx_data->window, DestroyNotify, StructureNotifyMask, &close_game, memory);

@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:59:40 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/30 13:00:01 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:33:12 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	destroy_images(t_memory *memory)
 {
+	if (memory->mlx_data->img)
+    {
+        mlx_destroy_image(memory->mlx_data->mlx, memory->mlx_data->img);
+        memory->mlx_data->img = NULL;
+    }
 	if (memory->mlx_data->north_texture)
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, memory->mlx_data->north_texture);

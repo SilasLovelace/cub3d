@@ -6,19 +6,62 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/30 11:05:11 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:33:55 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	display(void)
+void    my_mlx_pixel_put(int x, int y, int color)
+{
+	t_memory    *memory;
+	char        *dst;
+
+	memory = get_memory();
+	dst = memory->mlx_data->addr + (y * memory->mlx_data->line_length + x * (memory->mlx_data->bpp / 8));
+	*(unsigned int*)dst = color;
+}
+
+void	display_background(void)
 {
 	t_memory	*memory;
+	int			x;
+	int			y;
+
 	memory = get_memory();
-	if (!memory || !memory->resources)
+	y = 0;
+	while (y < memory->mlx_data->resolution_y)
 	{
-		printf("Error\nMemory allocation failed\n");
-		return;
+		x = 0;
+		while (x < memory->mlx_data->resolution_x)
+		{
+			if (y < memory->mlx_data->resolution_y / 2)
+				my_mlx_pixel_put(x, y, memory->resources->ceiling_color);
+			else
+				my_mlx_pixel_put(x, y, memory->resources->floor_color);
+			x++;
+		}
+		y++;
 	}
+}
+
+// void	display(void)
+// {
+// 	t_memory	*memory;
+// 	memory = get_memory();
+// 	if (!memory || !memory->resources)
+// 	{
+// 		printf("Error\nMemory allocation failed\n");
+// 		return;
+// 	}
+// 	display_background();
+// }
+
+void    display(void)
+{
+    t_memory    *memory;
+    memory = get_memory();
+    display_background();
+    mlx_put_image_to_window(memory->mlx_data->mlx, memory->mlx_data->window, 
+        memory->mlx_data->img, 0, 0);
 }
