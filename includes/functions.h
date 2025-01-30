@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 11:06:02 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:26:03 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	display(void);
 //close/close_game.c
 int close_game(void);
 int close_game_error(void);
+void	destroy(t_memory *memory);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/30 11:06:19 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:43:25 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <stdio.h>
 
 int handle_input(int key, t_memory *memory)
 {
@@ -62,6 +63,7 @@ void run_game(void)
 		printf("Error\nMLX initialization failed\n");
 		return;
 	}
+	take_images();
 	memory->mlx_data->window = mlx_new_window(memory->mlx_data->mlx, 640, 480, "cub3D");
 	if (!memory->mlx_data->window)
 	{

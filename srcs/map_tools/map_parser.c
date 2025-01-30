@@ -6,11 +6,12 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 10:52:34 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:55:21 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <stdio.h>
 
 char*	find_next_comma(char* str)
 {
@@ -129,6 +130,8 @@ int	is_valid_resource(char* line)
 			end_info = skip_non_whitespace(begin_info + 2);
 			if (!(*(end_info) == '\0' || *skip_whitespace(end_info) == '\n') || !get_resource_dest(first_non_ws))
 				return (0);
+			if (*(end_info - 1) == '\n')
+				end_info--;
 			*(char**)get_resource_dest(first_non_ws) = ft_substr(begin_info, 0, end_info - begin_info);
 			return (1);
 		}
@@ -213,7 +216,7 @@ int	is_valid_map(char** map)
         printf("Error! No player found in map\n");
         return (0);
     }
-	// get_memory()->player_pos.x = j + 0.5;
-	// get_memory()->player_pos.y = i + 0.5;
+	get_memory()->player_pos->x = j + 0.5;
+	get_memory()->player_pos->y = i + 0.5;
     return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:32:08 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 11:12:32 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:27:06 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ void	free_memory(void)
             }
             free(m->map);
         }
-        if (m->player_pos)
-            free(m->player_pos);
-        if (m->mlx_data)
-            free(m->mlx_data);
         free(m->resources);
     }
+    if (m->player_pos)
+        free(m->player_pos);
+    destroy(m);
+    if (m->mlx_data)
+        free(m->mlx_data);
     free(m);
     freed = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 08:55:00 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:55:33 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int ac, char **av)
 					else
 					{
 						printf("Error! Invalid resource: %s on line %d\n", temp[line], line + 1);
-						break;
+						return (free_memory(), 1);
 					}
 				}
 				if (resources_full == 1)
