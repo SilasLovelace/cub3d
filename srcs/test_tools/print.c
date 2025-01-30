@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:07:34 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 17:08:20 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:49:42 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
+#include <stdio.h>
 
 void	print_memory(void)
 {
@@ -34,4 +35,8 @@ void	print_memory(void)
     printf("Ceiling texture: %d\n", m->resources->ceiling_color);
     printf("Floor color: %d\n", m->resources->floor_color);
     printf("Map start row: %d\n", m->map_start_row);
+    printf("Player position: %f, %f\n", m->player_pos->x, m->player_pos->y);
+    printf("Player direction: %f, %f\n", m->player_pos->dir_x, m->player_pos->dir_y);
+    printf("Resolution: %d, %d\n", m->mlx_data->resolution_x, m->mlx_data->resolution_y);
+    printf("Texture dimensions: %d, %d\n", m->mlx_data->tex_width, m->mlx_data->tex_height);
 }

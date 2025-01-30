@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 14:24:11 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:38:24 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,15 @@ typedef struct s_mlx_data
     int     endian;           
     int     resolution_x;     
     int     resolution_y;
+	int		fov;
 	 
     void    *north_texture;   
     void    *south_texture;  
     void    *east_texture;   
     void    *west_texture;   
 	
-    int     tex_width;       
-    int     tex_height;      
+    int     tex_width;
+    int     tex_height;
 } t_mlx_data;
 
 typedef struct s_memory

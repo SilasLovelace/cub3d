@@ -23,6 +23,7 @@ SRCS		= \
 			$(SRCSDIR)/game/run_game.c \
 			$(SRCSDIR)/display/display.c \
 			$(SRCSDIR)/close/close.c \
+			$(SRCSDIR)/raycaster/raycaster.c \
 
 OBJSDIR		= objs
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))

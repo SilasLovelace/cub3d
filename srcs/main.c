@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 14:34:52 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:47:45 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	main(int ac, char **av)
 					resources_full = 1;
 		
 			}
-			print_memory();
 			run_game();
 		}
 		else

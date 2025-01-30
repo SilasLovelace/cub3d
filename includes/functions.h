@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 12:26:03 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:45:09 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ void	display(void);
 int close_game(void);
 int close_game_error(void);
 void	destroy(t_memory *memory);
+
+//raycaster/raycaster.c
+void    get_texture_dimensions(char *filepath);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 12:55:21 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:01:56 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,12 +155,41 @@ int	is_valid_resource(char* line)
 		return (0);
 }
 
+void set_player_coordinates(char orientation, int x, int y)
+{
+	t_memory *memory;
+
+	memory = get_memory();
+	memory->player_pos->x = x + 0.5;
+	memory->player_pos->y = y + 0.5;
+	if (orientation == 'N')
+	{
+		memory->player_pos->dir_x = 0;
+		memory->player_pos->dir_y = 1;
+	}
+	else if (orientation == 'E')
+	{
+		memory->player_pos->dir_x = 1;
+		memory->player_pos->dir_y = 0;
+	}
+	else if (orientation == 'S')
+	{
+		memory->player_pos->dir_x = 0;
+		memory->player_pos->dir_y = -1;
+	}
+	else if (orientation == 'W')
+	{
+		memory->player_pos->dir_x = -1;
+		memory->player_pos->dir_y = 0;
+	}
+}
+
 int	is_valid_map(char** map)
 {
     int i;
     int j;
     int player_found;
-    
+ 
     if (!map || !map[0])
         return (0);
     i = 0;
@@ -188,6 +217,7 @@ int	is_valid_map(char** map)
                            i + 1, j + 1);
                     return (0);
                 }
+				set_player_coordinates(map[i][j], j, i);
                 player_found = 1;
             }
 			if (ft_strchr("0NSEW", map[i][j]))
@@ -216,7 +246,6 @@ int	is_valid_map(char** map)
         printf("Error! No player found in map\n");
         return (0);
     }
-	get_memory()->player_pos->x = j + 0.5;
-	get_memory()->player_pos->y = i + 0.5;
+	
     return (1);
 }

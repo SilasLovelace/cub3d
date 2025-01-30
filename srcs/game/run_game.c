@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/30 14:35:42 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:48:07 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	take_images()
 	int			width;
 	int			height;
 
-	width = 512;
-	height = 512;
 	memory = get_memory();
 	if (!memory || !memory->resources)
 	{
 		printf("Error\nMemory allocation failed\n");
 		return;
 	}
+
+	get_texture_dimensions(memory->resources->north_texture);
 	memory->mlx_data->north_texture = mlx_xpm_file_to_image(memory->mlx_data->mlx, memory->resources->north_texture, &width, &height);
 	memory->mlx_data->south_texture = mlx_xpm_file_to_image(memory->mlx_data->mlx, memory->resources->south_texture, &width, &height);
 	memory->mlx_data->west_texture = mlx_xpm_file_to_image(memory->mlx_data->mlx, memory->resources->west_texture, &width, &height);
@@ -79,9 +79,9 @@ void run_game(void)
     memory->mlx_data->addr = mlx_get_data_addr(memory->mlx_data->img, 
         &memory->mlx_data->bpp, &memory->mlx_data->line_length, 
         &memory->mlx_data->endian);
-	
 	mlx_key_hook(memory->mlx_data->window, handle_input, memory);
 	mlx_hook(memory->mlx_data->window, DestroyNotify, StructureNotifyMask, &close_game, memory);
+	print_memory();
 	display();
 	mlx_loop(memory->mlx_data->mlx);
 }
