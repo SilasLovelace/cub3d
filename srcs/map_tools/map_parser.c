@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 18:01:39 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:52:34 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ int	is_valid_map(char** map)
         printf("Error! No player found in map\n");
         return (0);
     }
-	get_memory()->player_pos.x = j + 0.5;
-	get_memory()->player_pos.y = i + 0.5;
+	// get_memory()->player_pos.x = j + 0.5;
+	// get_memory()->player_pos.y = i + 0.5;
     return (1);
 }

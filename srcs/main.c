@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 18:03:20 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/30 08:55:00 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ t_memory	*get_memory(void)
             return (NULL);
         }
         ft_bzero(memory->player_pos, sizeof(t_coordinates));
+		memory->mlx_data = malloc(sizeof(t_mlx_data));
+		if (!memory->mlx_data)
+		{
+			free(memory->resources);
+			free(memory->player_pos);
+			free(memory);
+			return (NULL);
+		}
+		ft_bzero(memory->mlx_data, sizeof(t_mlx_data));
 		memory->resources->ceiling_color = -1;
 		memory->resources->floor_color = -1;
 	}

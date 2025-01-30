@@ -6,39 +6,44 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/29 17:48:18 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:06:19 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-int close_game(t_memory *memory)
-{
-	if (!memory || !memory->resources)
-		return (0);
-	if (memory->resources->window && memory->resources->mlx)
-	{
-		mlx_destroy_window(memory->resources->mlx, memory->resources->window);
-		memory->resources->window = NULL;
-	}
-	if (memory->resources->mlx)
-	{
-		mlx_destroy_display(memory->resources->mlx);
-		free(memory->resources->mlx);
-		memory->resources->mlx = NULL;
-	}
-	free_memory();
-	exit(0);
-	return (0);
-}
 
 int handle_input(int key, t_memory *memory)
 {
 	if (!memory)
 		return (1);
 	if (key == XK_Escape)
-		close_game(memory);
+		close_game();
 	return (SUCCESS);
+}
+
+void	take_images()
+{
+	t_memory	*memory;
+	int			width;
+	int			height;
+
+	width = 512;
+	height = 512;
+	memory = get_memory();
+	if (!memory || !memory->resources)
+	{
+		printf("Error\nMemory allocation failed\n");
+		return;
+	}
+	memory->mlx_data->north_texture = mlx_xpm_file_to_image(memory->mlx_data->mlx, memory->resources->north_texture, &width, &height);
+	memory->mlx_data->south_texture = mlx_xpm_file_to_image(memory->mlx_data->mlx, memory->resources->south_texture, &width, &height);
+	memory->mlx_data->west_texture = mlx_xpm_file_to_image(memory->mlx_data->mlx, memory->resources->west_texture, &width, &height);
+	memory->mlx_data->east_texture = mlx_xpm_file_to_image(memory->mlx_data->mlx, memory->resources->east_texture, &width, &height);
+	if (!memory->mlx_data->north_texture || !memory->mlx_data->south_texture || !memory->mlx_data->west_texture || !memory->mlx_data->east_texture)
+	{
+		printf("Error\nTexture allocation failed\n");
+		close_game_error();
+	}
 }
 
 void run_game(void)
@@ -51,22 +56,24 @@ void run_game(void)
 		printf("Error\nMemory allocation failed\n");	
 		return;
 	}
-	memory->resources->mlx = mlx_init();
-	if (!memory->resources->mlx)
+	memory->mlx_data->mlx = mlx_init();
+	if (!memory->mlx_data->mlx)
 	{
 		printf("Error\nMLX initialization failed\n");
 		return;
 	}
-	memory->resources->window = mlx_new_window(memory->resources->mlx, 640, 480, "cub3D");
-	if (!memory->resources->window)
+	memory->mlx_data->window = mlx_new_window(memory->mlx_data->mlx, 640, 480, "cub3D");
+	if (!memory->mlx_data->window)
 	{
 		printf("Error\nWindow creation failed\n");
-		mlx_destroy_display(memory->resources->mlx);
-		free(memory->resources->mlx);
-		memory->resources->mlx = NULL;
+		mlx_destroy_display(memory->mlx_data->mlx);
+		free(memory->mlx_data->mlx);
+		memory->mlx_data->mlx = NULL;
 		return;
 	}
-	mlx_key_hook(memory->resources->window, handle_input, memory);
-	mlx_hook(memory->resources->window, DestroyNotify, StructureNotifyMask, &close_game, memory);
-	mlx_loop(memory->resources->mlx);
+	
+	mlx_key_hook(memory->mlx_data->window, handle_input, memory);
+	mlx_hook(memory->mlx_data->window, DestroyNotify, StructureNotifyMask, &close_game, memory);
+	display();
+	mlx_loop(memory->mlx_data->mlx);
 }

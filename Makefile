@@ -21,6 +21,8 @@ SRCS		= \
 			$(SRCSDIR)/test_tools/print.c \
 			$(SRCSDIR)/freeing/freeing.c \
 			$(SRCSDIR)/game/run_game.c \
+			$(SRCSDIR)/display/display.c \
+			$(SRCSDIR)/close/close.c \
 
 OBJSDIR		= objs
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 16:20:03 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:06:02 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,12 @@ t_memory    *get_memory(void);
 
 //game/run_game.c
 void	run_game(void);
+
+//display/display.c
+void	display(void);
+
+//close/close_game.c
+int close_game(void);
+int close_game_error(void);
 
 #endif
