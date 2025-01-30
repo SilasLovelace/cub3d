@@ -6,12 +6,12 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 14:38:24 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:45:47 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		STRUCTS_H
-# define		STRUCTS_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 typedef struct s_map_resources
 {
@@ -21,7 +21,7 @@ typedef struct s_map_resources
 	char	*east_texture;
 	int		ceiling_color;
 	int		floor_color;
-}   t_map_resources;
+}	t_map_resources;
 
 typedef struct s_coordinates
 {
@@ -35,25 +35,23 @@ typedef struct s_coordinates
 
 typedef struct s_mlx_data
 {
-    void    *mlx;            
-    void    *window;          
-    void    *img;             
-    char    *addr;            
-    int     bpp;              
-    int     line_length;      
-    int     endian;           
-    int     resolution_x;     
-    int     resolution_y;
+	void	*mlx;
+	void	*window;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		resolution_x;
+	int		resolution_y;
 	int		fov;
-	 
-    void    *north_texture;   
-    void    *south_texture;  
-    void    *east_texture;   
-    void    *west_texture;   
-	
-    int     tex_width;
-    int     tex_height;
-} t_mlx_data;
+	void	*north_texture;
+	void	*south_texture;
+	void	*east_texture;
+	void	*west_texture;
+	int		tex_width;
+	int		tex_height;
+}	t_mlx_data;
 
 typedef struct s_memory
 {

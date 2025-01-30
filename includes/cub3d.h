@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:38:05 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 13:43:56 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:42:44 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
-#include <stdio.h>
-#include <fcntl.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 #endif

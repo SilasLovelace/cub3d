@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   makros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:40 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/22 12:29:44 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:43:06 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		MAKROS_H
-# define	MAKROS_H
+#ifndef MAKROS_H
+# define MAKROS_H
 
 #endif

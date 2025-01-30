@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:37:09 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/29 17:48:12 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:34:59 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 char	**read_file_lines(const char *filename)
 {
-	int	 fd;
+	int		fd;
 	char	*line;
 	char	**lines;
-	int	 line_count;
-	int	 i;
-	bool   flag;
+	int		line_count;
+	int		i;
+	bool	flag;
 
 	flag = false;
 	fd = open(filename, O_RDONLY);
@@ -30,7 +30,7 @@ char	**read_file_lines(const char *filename)
 	{
 		line = get_next_line(fd, &flag, false);
 		if (!line)
-			break;
+			break ;
 		line_count++;
 		free(line);
 	}
