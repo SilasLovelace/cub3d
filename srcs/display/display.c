@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/30 17:18:59 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 07:59:36 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	display_background(void)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(memory->mlx_data->mlx, memory->mlx_data->window, \
+		memory->mlx_data->img, 0, 0);
 }
 
 void	display(void)
@@ -52,6 +54,4 @@ void	display(void)
 
 	memory = get_memory();
 	display_background();
-	mlx_put_image_to_window(memory->mlx_data->mlx, memory->mlx_data->window, \
-		memory->mlx_data->img, 0, 0);
 }

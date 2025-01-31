@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:37:09 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 17:34:59 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 08:12:37 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ char	**read_file_lines(const char *filename)
 	while (1)
 	{
 		line = get_next_line(fd, &flag, false);
+		if (flag)
+		{
+			printf("Error! Memory allocation failed\n");
+			free_memory();
+			exit(1);
+		}
 		if (!line)
 			break ;
 		line_count++;
@@ -48,6 +54,12 @@ char	**read_file_lines(const char *filename)
 	while (i < line_count)
 	{
 		lines[i] = get_next_line(fd, &flag, false);
+		if (flag)
+		{
+			printf("Error! Memory allocation failed\n");
+			free_memory();
+			exit(1);
+		}
 		if (!lines[i])
 		{
 			while (--i >= 0)
