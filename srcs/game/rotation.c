@@ -6,13 +6,13 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 09:25:34 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/31 10:23:36 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:15:59 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	rotate_left(void)
+void	rotate_right(void)
 {
 	t_memory	*memory;
 	float		old_dir_x;
@@ -27,7 +27,7 @@ void	rotate_left(void)
 		memory->player_pos->dir_x);
 }
 
-void	rotate_right(void)
+void	rotate_left(void)
 {
 	t_memory	*memory;
 	float		old_dir_x;

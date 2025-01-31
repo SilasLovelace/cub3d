@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:33:35 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/31 09:01:17 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:16:30 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	move_backward(void)
 		memory->player_pos->y = new_y;
 }
 
-void	move_left(void)
+void	move_right(void)
 {
 	float		new_x;
 	float		new_y;
@@ -57,7 +57,7 @@ void	move_left(void)
 		memory->player_pos->y = new_y;
 }
 
-void	move_right(void)
+void	move_left(void)
 {
 	float		new_x;
 	float		new_y;

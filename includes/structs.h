@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 10:21:54 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:29:23 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_map_resources
 	char	*east_texture;
 	int		ceiling_color;
 	int		floor_color;
+	int 	map_width;
+	int 	map_height;
 }	t_map_resources;
 
 typedef struct s_coordinates
@@ -29,8 +31,6 @@ typedef struct s_coordinates
 	float	y;
 	float	dir_x;
 	float	dir_y;
-	float	v_x;
-	float	v_y;
 	float	angle;
 }	t_coordinates;
 

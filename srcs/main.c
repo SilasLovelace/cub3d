@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 10:24:58 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:22:07 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_memory	*get_memory(void)
 			return (NULL);
 		}
 		ft_bzero(memory->keys, sizeof(t_keys));
-		memory->mlx_data->resolution_x = 640;
-		memory->mlx_data->resolution_y = 480;
+		memory->mlx_data->resolution_x = 1920;
+		memory->mlx_data->resolution_y = 919;
 		memory->resources->ceiling_color = -1;
 		memory->resources->floor_color = -1;
 	}

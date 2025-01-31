@@ -6,14 +6,14 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:40 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 10:16:32 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:36:19 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAKROS_H
 # define MAKROS_H
 
-# define SPEED 0.1
-# define ROT_SPEED 0.05
+# define SPEED 0.5
+# define ROT_SPEED M_PI/12
 
 #endif
