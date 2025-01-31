@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:32:08 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 17:36:17 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:16:39 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	free_memory(void)
 	destroy(m);
 	if (m->mlx_data)
 		free(m->mlx_data);
+	if (m->keys)
+		free(m->keys);
 	free(m);
 	freed = 1;
 }

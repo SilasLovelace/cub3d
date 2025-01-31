@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 17:45:47 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:15:47 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@ typedef struct s_coordinates
 	float	dir_y;
 	float	v_x;
 	float	v_y;
+	float	angle;
 }	t_coordinates;
+
+typedef struct s_keys
+{
+    int w_pressed;
+    int s_pressed;
+    int a_pressed;
+    int d_pressed;
+    int left_pressed;
+    int right_pressed;
+} t_keys;
 
 typedef struct s_mlx_data
 {
@@ -60,6 +71,7 @@ typedef struct s_memory
 	char			**map;
 	t_coordinates	*player_pos;
 	int				map_start_row;
+	t_keys			 *keys;
 }	t_memory;
 
 #endif

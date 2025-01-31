@@ -21,6 +21,7 @@ SRCS		= \
 			$(SRCSDIR)/test_tools/print.c \
 			$(SRCSDIR)/freeing/freeing.c \
 			$(SRCSDIR)/game/run_game.c \
+			$(SRCSDIR)/game/moving.c \
 			$(SRCSDIR)/display/display.c \
 			$(SRCSDIR)/close/close.c \
 			$(SRCSDIR)/raycaster/raycaster.c \
@@ -44,10 +45,10 @@ all		: $(NAME)
 
 $(NAME)	: ${OBJS}
 		$(MAKE) -C ${LIBDIR} all
-		$(CC) ${CFLAGS} ${DFLAGS} ${IFLAGS} -o $@ $^ ${LIBFT} -lX11 -lXext -lmlx
+		$(CC) ${CFLAGS} ${DFLAGS} ${IFLAGS} -o $@ $^ ${LIBFT} -lX11 -lXext -lmlx -lm
 
-# -Lminilibx-linux -lmlx_Linux -lX11 -lXext
-# -lX11 -lXext -lmlx
+# -Lminilibx-linux -lmlx_Linux -lX11 -lXext -lm
+# -lX11 -lXext -lmlx -lm
 
 ${OBJSDIR}/%.o	: %.c
 		@mkdir -p $(dir $@)

@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 17:34:03 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:21:32 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ t_memory	*get_memory(void)
 			return (NULL);
 		}
 		ft_bzero(memory->mlx_data, sizeof(t_mlx_data));
+		memory->keys = malloc(sizeof(t_keys));
+		if (!memory->keys)
+		{
+			free(memory->resources);
+			free(memory->player_pos);
+			free(memory->mlx_data);
+			free(memory);
+			return (NULL);
+		}
+		ft_bzero(memory->keys, sizeof(t_keys));
 		memory->mlx_data->resolution_x = 640;
 		memory->mlx_data->resolution_y = 480;
 		memory->resources->ceiling_color = -1;

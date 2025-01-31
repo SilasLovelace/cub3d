@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/31 07:59:36 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:17:45 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,9 @@ void	display(void)
 
 	memory = get_memory();
 	display_background();
+	// display_walls();
+	printf("Player position: %f, %f\n", memory->player_pos->x, \
+		memory->player_pos->y);
+	printf("Player direction: %f, %f\n", memory->player_pos->dir_x, \
+		memory->player_pos->dir_y);
 }

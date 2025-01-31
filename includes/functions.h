@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 17:44:18 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:02:02 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,31 @@
 
 # include "structs.h"
 
-// freeing/freeing.c
+//main.c
+t_memory	*get_memory(void);
+
+//freeing/freeing.c
 void		free_memory(void);
 
 //test_tools/print_states.c
 void		print_memory(void);
 
-// map_tools
-//map_parser.c
-
+//map_tools/map_parser.c
 int			is_valid_map_name(char *map_name);
 int			is_valid_resource(char *line);
 int			is_valid_map(char **line);
 
-//file_reader.c
+//map_tools/file_reader.c
 char		**read_file_lines(const char *filename);
-
-//main.c
-t_memory	*get_memory(void);
 
 //game/run_game.c
 void		run_game(void);
+
+//game/moving.c
+void		move_forward(void);
+void		move_backward(void);
+void		move_left(void);
+void		move_right(void);
 
 //display/display.c
 void		display(void);
