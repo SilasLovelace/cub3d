@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 08:48:59 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:20:29 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void	set_player_coordinates(char orientation, int x, int y)
 		memory->player_pos->dir_x = -1;
 		memory->player_pos->dir_y = 0;
 	}
-	memory->player_pos->angle = atan2(memory->player_pos->dir_y, \
+	memory->player_pos->angle = atan2f(memory->player_pos->dir_y, \
 		memory->player_pos->dir_x);
 }
 

@@ -6,13 +6,13 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/31 09:27:32 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:23:11 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int handle_keypress(int key, t_memory *memory)
+int	handle_keypress(int key, t_memory *memory)
 {
 	if (key == XK_Escape)
 		close_game();
@@ -31,7 +31,7 @@ int handle_keypress(int key, t_memory *memory)
 	return (SUCCESS);
 }
 
-int handle_keyrelease(int key, t_memory *memory)
+int	handle_keyrelease(int key, t_memory *memory)
 {
 	if (key == XK_w)
 		memory->keys->w_pressed = 0;
@@ -62,7 +62,6 @@ int	game_loop(t_memory *memory)
 		rotate_left();
 	if (memory->keys->right_pressed)
 		rotate_right();
-		
 	display();
 	return (SUCCESS);
 }
@@ -126,10 +125,10 @@ void	run_game(void)
 	mlx_loop_hook(memory->mlx_data->mlx, game_loop, memory);
 	mlx_hook(memory->mlx_data->window, DestroyNotify, StructureNotifyMask, \
 		&close_game, memory);
-	mlx_hook(memory->mlx_data->window, KeyPress, KeyPressMask, 
-        handle_keypress, memory);
-    mlx_hook(memory->mlx_data->window, KeyRelease, KeyReleaseMask, 
-        handle_keyrelease, memory);
+	mlx_hook(memory->mlx_data->window, KeyPress, KeyPressMask, \
+		handle_keypress, memory);
+	mlx_hook(memory->mlx_data->window, KeyRelease, KeyReleaseMask, \
+		handle_keyrelease, memory);
 	print_memory();
 	display();
 	mlx_loop(memory->mlx_data->mlx);

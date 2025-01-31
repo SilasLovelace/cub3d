@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 09:21:32 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:24:58 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ int	main(int ac, char **av)
 					&& get_memory()->resources->south_texture
 					&& get_memory()->resources->west_texture
 					&& get_memory()->resources->east_texture
-					&& get_memory()->resources->ceiling_color!= - 1
-					&& get_memory()->resources->floor_color != - 1)
+					&& get_memory()->resources->ceiling_color != -1
+					&& get_memory()->resources->floor_color != -1)
 					resources_full = 1;
 			}
 			run_game();
