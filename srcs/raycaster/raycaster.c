@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:37:23 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/31 08:14:16 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:27:56 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	get_texture_dimensions(char *filepath)
 	}
 	line = get_next_line(fd, &flag, false);
 	if (flag)
-		{
-			printf("Error! Memory allocation failed\n");
-			free_memory();
-			exit(1);
-		}
+	{
+		printf("Error! Memory allocation failed\n");
+		free_memory();
+		exit(1);
+	}
 	if (!line)
 	{
 		close(fd);

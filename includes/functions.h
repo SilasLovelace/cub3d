@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 09:02:02 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:26:46 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void		move_forward(void);
 void		move_backward(void);
 void		move_left(void);
 void		move_right(void);
+
+//game/rotation.c
+void		rotate_left(void);
+void		rotate_right(void);
 
 //display/display.c
 void		display(void);

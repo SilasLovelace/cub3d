@@ -22,6 +22,7 @@ SRCS		= \
 			$(SRCSDIR)/freeing/freeing.c \
 			$(SRCSDIR)/game/run_game.c \
 			$(SRCSDIR)/game/moving.c \
+			$(SRCSDIR)/game/rotation.c \
 			$(SRCSDIR)/display/display.c \
 			$(SRCSDIR)/close/close.c \
 			$(SRCSDIR)/raycaster/raycaster.c \
