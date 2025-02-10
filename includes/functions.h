@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/10 18:23:16 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:08:02 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void		rotate_right(void);
 //display/display.c
 void		display(void);
 void        my_mlx_pixel_put(int x, int y, int color);
+void    	calculate_map_dimensions();
+
 
 //close/close_game.c
 int			close_game(void);

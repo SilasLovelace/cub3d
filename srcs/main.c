@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/10 18:42:09 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:30:47 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,33 +47,6 @@ t_memory	*get_memory(void)
 		}
 		ft_bzero(memory->mlx_data, sizeof(t_mlx_data));
 		
-		memory->mlx_data->textures = malloc(sizeof(t_texture *) * 5);
-		if (!memory->mlx_data->textures)
-		{
-			free(memory->resources);
-			free(memory->player_pos);
-			free(memory->mlx_data);
-			free(memory);
-			return (NULL);
-		}
-		for (int i = 0; i < 5; i++)
-		{
-			memory->mlx_data->textures[i] = malloc(sizeof(t_texture));
-			if (!memory->mlx_data->textures[i])
-			{
-				while (--i >= 0)
-					free(memory->mlx_data->textures[i]);
-				free(memory->mlx_data->textures);
-				free(memory->resources);
-				free(memory->player_pos);
-				free(memory->mlx_data);
-				free(memory);
-				return (NULL);
-			}
-			ft_bzero(memory->mlx_data->textures[i], sizeof(t_texture));
-		}
-		ft_bzero(memory->mlx_data->textures, sizeof(t_texture *) * 5);
-		
 		memory->keys = malloc(sizeof(t_keys));
 		if (!memory->keys)
 		{
@@ -86,7 +59,7 @@ t_memory	*get_memory(void)
 		}
 		ft_bzero(memory->keys, sizeof(t_keys));
 		memory->mlx_data->resolution_x = 1920;
-		memory->mlx_data->resolution_y = 919;
+		memory->mlx_data->resolution_y = 1080;
 		memory->resources->ceiling_color = -1;
 		memory->resources->floor_color = -1;
 	}
@@ -131,6 +104,7 @@ int	main(int ac, char **av)
 					{
 						get_memory()->map_start_row = line;
 						printf("Map input valid\n\n");
+						calculate_map_dimensions();
 					}
 					break ;
 				}

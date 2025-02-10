@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/10 18:32:15 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:46:06 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_mlx_data
 	int		resolution_x;
 	int		resolution_y;
 	int		fov;
-	t_texture	**textures;
+	t_texture	textures[4];
 	// t_texture	*north_texture;
 	// t_texture	*south_texture;
 	// t_texture	*east_texture;

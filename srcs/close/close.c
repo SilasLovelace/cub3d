@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:59:40 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/10 18:36:42 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:49:20 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,29 @@ void	destroy_images(t_memory *memory)
 		mlx_destroy_image(memory->mlx_data->mlx, memory->mlx_data->img);
 		memory->mlx_data->img = NULL;
 	}
-	if (memory->mlx_data->textures[NORTH])
+	if (memory->mlx_data->textures[NORTH].img)
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[NORTH]);
-		memory->mlx_data->textures[NORTH] = NULL;
+			memory->mlx_data->textures[NORTH].img);
+		memory->mlx_data->textures[NORTH].img = NULL;
 	}
-	if (memory->mlx_data->textures[SOUTH])
+	if (memory->mlx_data->textures[SOUTH].img)
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[SOUTH]);
-		memory->mlx_data->textures[SOUTH] = NULL;
+			memory->mlx_data->textures[SOUTH].img);
+		memory->mlx_data->textures[SOUTH].img = NULL;
 	}
-	if (memory->mlx_data->textures[WEST])
+	if (memory->mlx_data->textures[WEST].img)
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[WEST]);
-		memory->mlx_data->textures[WEST] = NULL;
+			memory->mlx_data->textures[WEST].img);
+		memory->mlx_data->textures[WEST].img = NULL;
 	}
-	if (memory->mlx_data->textures[EAST])
+	if (memory->mlx_data->textures[EAST].img)
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[EAST]);
-		memory->mlx_data->textures[EAST] = NULL;
+			memory->mlx_data->textures[EAST].img);
+		memory->mlx_data->textures[EAST].img = NULL;
 	}
 }
 

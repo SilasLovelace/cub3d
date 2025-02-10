@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/10 18:23:44 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:26:46 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,10 @@ void	display(void)
 	// display_walls();
 	// draw_minimap();
 	cast_rays();
-	printf("Player position: %f, %f\n", memory->player_pos->x, \
-		memory->player_pos->y);
-	printf("Player direction: %f, %f\n", memory->player_pos->dir_x, \
-		memory->player_pos->dir_y);
+	mlx_put_image_to_window(memory->mlx_data->mlx, memory->mlx_data->window, \
+		memory->mlx_data->img, 0, 0);
+	// printf("Player position: %f, %f\n", memory->player_pos->x, 
+	// 	memory->player_pos->y);
+	// printf("Player direction: %f, %f\n", memory->player_pos->dir_x, 
+	// 	memory->player_pos->dir_y);
 }
