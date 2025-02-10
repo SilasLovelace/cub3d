@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:59:40 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:55 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:36:42 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,29 @@ void	destroy_images(t_memory *memory)
 		mlx_destroy_image(memory->mlx_data->mlx, memory->mlx_data->img);
 		memory->mlx_data->img = NULL;
 	}
-	if (memory->mlx_data->north_texture)
+	if (memory->mlx_data->textures[NORTH])
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->north_texture);
-		memory->mlx_data->north_texture = NULL;
+			memory->mlx_data->textures[NORTH]);
+		memory->mlx_data->textures[NORTH] = NULL;
 	}
-	if (memory->mlx_data->south_texture)
+	if (memory->mlx_data->textures[SOUTH])
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->south_texture);
-		memory->mlx_data->south_texture = NULL;
+			memory->mlx_data->textures[SOUTH]);
+		memory->mlx_data->textures[SOUTH] = NULL;
 	}
-	if (memory->mlx_data->west_texture)
+	if (memory->mlx_data->textures[WEST])
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->west_texture);
-		memory->mlx_data->west_texture = NULL;
+			memory->mlx_data->textures[WEST]);
+		memory->mlx_data->textures[WEST] = NULL;
 	}
-	if (memory->mlx_data->east_texture)
+	if (memory->mlx_data->textures[EAST])
 	{
 		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->east_texture);
-		memory->mlx_data->east_texture = NULL;
+			memory->mlx_data->textures[EAST]);
+		memory->mlx_data->textures[EAST] = NULL;
 	}
 }
 

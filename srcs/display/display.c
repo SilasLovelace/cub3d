@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/31 14:42:18 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:23:44 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,10 @@ void	display(void)
 	t_memory	*memory;
 
 	memory = get_memory();
-	display_background();
+	// display_background();
 	// display_walls();
-	draw_minimap();
+	// draw_minimap();
+	cast_rays();
 	printf("Player position: %f, %f\n", memory->player_pos->x, \
 		memory->player_pos->y);
 	printf("Player direction: %f, %f\n", memory->player_pos->dir_x, \

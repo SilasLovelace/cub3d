@@ -3,15 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 14:29:23 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:32:15 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct s_ray
+{
+	float	ray_x;
+	float	ray_y;
+	int 	last_x;
+	int 	last_y;
+	float	step_x;
+	float	step_y;
+	float	angle;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_num;
+	int		tex_x;
+}	t_ray;
 
 typedef struct s_map_resources
 {
@@ -44,6 +60,15 @@ typedef struct s_keys
 	int	right_pressed;
 }	t_keys;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_texture;
+
 typedef struct s_mlx_data
 {
 	void	*mlx;
@@ -56,10 +81,11 @@ typedef struct s_mlx_data
 	int		resolution_x;
 	int		resolution_y;
 	int		fov;
-	void	*north_texture;
-	void	*south_texture;
-	void	*east_texture;
-	void	*west_texture;
+	t_texture	**textures;
+	// t_texture	*north_texture;
+	// t_texture	*south_texture;
+	// t_texture	*east_texture;
+	// t_texture	*west_texture;
 	int		tex_width;
 	int		tex_height;
 }	t_mlx_data;

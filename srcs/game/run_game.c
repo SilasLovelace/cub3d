@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/01/31 10:23:11 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:45:26 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,40 @@ void	take_images(void)
 
 	memory = get_memory();
 	get_texture_dimensions(memory->resources->north_texture);
-	memory->mlx_data->north_texture = \
+	memory->mlx_data->textures[NORTH]->img = \
 		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
 			memory->resources->north_texture, &width, &height);
-	memory->mlx_data->south_texture = \
+	memory->mlx_data->textures[SOUTH]->img = \
 		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
 			memory->resources->south_texture, &width, &height);
-	memory->mlx_data->west_texture = \
+	memory->mlx_data->textures[WEST]->img = \
 		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
 			memory->resources->west_texture, &width, &height);
-	memory->mlx_data->east_texture = \
+	memory->mlx_data->textures[EAST]->img = \
 		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
 			memory->resources->east_texture, &width, &height);
-	if (!memory->mlx_data->north_texture || !memory->mlx_data->south_texture
-		|| !memory->mlx_data->west_texture || !memory->mlx_data->east_texture)
+	if (!memory->mlx_data->textures[NORTH]->img || !memory->mlx_data->textures[SOUTH]->img
+		|| !memory->mlx_data->textures[WEST]->img || !memory->mlx_data->textures[EAST]->img)
 	{
 		printf("Error\nTexture allocation failed\n");
 		close_game_error();
 	}
+	mlx_get_data_addr(memory->mlx_data->textures[NORTH]->img, \
+		&memory->mlx_data->textures[NORTH]->bpp, \
+			&memory->mlx_data->textures[NORTH]->line_length, \
+				&memory->mlx_data->textures[NORTH]->endian);
+	mlx_get_data_addr(memory->mlx_data->textures[SOUTH]->img, \
+		&memory->mlx_data->textures[SOUTH]->bpp, \
+			&memory->mlx_data->textures[SOUTH]->line_length, \
+				&memory->mlx_data->textures[SOUTH]->endian);
+	mlx_get_data_addr(memory->mlx_data->textures[WEST]->img, \
+		&memory->mlx_data->textures[WEST]->bpp, \
+			&memory->mlx_data->textures[WEST]->line_length, \
+				&memory->mlx_data->textures[WEST]->endian);
+	mlx_get_data_addr(memory->mlx_data->textures[EAST]->img, \
+		&memory->mlx_data->textures[EAST]->bpp, \
+			&memory->mlx_data->textures[EAST]->line_length, \
+				&memory->mlx_data->textures[EAST]->endian);
 }
 
 void	run_game(void)

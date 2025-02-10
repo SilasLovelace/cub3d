@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 14:22:07 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:42:09 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,41 @@ t_memory	*get_memory(void)
 			return (NULL);
 		}
 		ft_bzero(memory->mlx_data, sizeof(t_mlx_data));
+		
+		memory->mlx_data->textures = malloc(sizeof(t_texture *) * 5);
+		if (!memory->mlx_data->textures)
+		{
+			free(memory->resources);
+			free(memory->player_pos);
+			free(memory->mlx_data);
+			free(memory);
+			return (NULL);
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			memory->mlx_data->textures[i] = malloc(sizeof(t_texture));
+			if (!memory->mlx_data->textures[i])
+			{
+				while (--i >= 0)
+					free(memory->mlx_data->textures[i]);
+				free(memory->mlx_data->textures);
+				free(memory->resources);
+				free(memory->player_pos);
+				free(memory->mlx_data);
+				free(memory);
+				return (NULL);
+			}
+			ft_bzero(memory->mlx_data->textures[i], sizeof(t_texture));
+		}
+		ft_bzero(memory->mlx_data->textures, sizeof(t_texture *) * 5);
+		
 		memory->keys = malloc(sizeof(t_keys));
 		if (!memory->keys)
 		{
 			free(memory->resources);
 			free(memory->player_pos);
 			free(memory->mlx_data);
+			free(memory->mlx_data->textures);
 			free(memory);
 			return (NULL);
 		}
