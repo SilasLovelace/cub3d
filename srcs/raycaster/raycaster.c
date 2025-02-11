@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:37:23 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/10 19:55:15 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:52:12 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,29 +96,29 @@ void		cast_rays()
 					if((int)ray->ray_x > ray->last_x)
 					{
 						ray->tex_num = WEST;
-						ray->tex_x = (int)((ray->ray_y - (int)ray->ray_y) / (1/mem->mlx_data->tex_width));
+						ray->tex_x = (int)((ray->ray_y - (int)ray->ray_y) * mem->mlx_data->tex_width);
 					}
 					else if ((int)ray->ray_x < ray->last_x)
 					{
 						ray->tex_num = EAST;
-						ray->tex_x = (int)((ray->ray_y - (int)ray->ray_y) / (1/mem->mlx_data->tex_width));
+						ray->tex_x = (int)((ray->ray_y - (int)ray->ray_y) * mem->mlx_data->tex_width);
 					}
 					else if ((int)ray->ray_y > ray->last_y)
 					{
 						ray->tex_num = NORTH;
-						ray->tex_x = (int)((ray->ray_x - (int)ray->ray_x) / (1/mem->mlx_data->tex_width));
+						ray->tex_x = (int)((ray->ray_x - (int)ray->ray_x) * mem->mlx_data->tex_width);
 					}
 					else if ((int)ray->ray_y < ray->last_y)
 					{
 						ray->tex_num = SOUTH;
-						ray->tex_x = (int)((ray->ray_x - (int)ray->ray_x) / (1/mem->mlx_data->tex_width));
+						ray->tex_x = (int)((ray->ray_x - (int)ray->ray_x) * mem->mlx_data->tex_width);
 					}
 					float distance = sqrt((ray->ray_x - mem->player_pos->x) * (ray->ray_x - mem->player_pos->x)
 										+ (ray->ray_y - mem->player_pos->y) * (ray->ray_y - mem->player_pos->y));
 					ray->line_height = mem->mlx_data->resolution_y / (distance * cos(ray->angle - mem->player_pos->angle));
 					ray->draw_start = -ray->line_height / 2 + mem->mlx_data->resolution_y / 2;
 					ray->draw_end = ray->line_height / 2 + mem->mlx_data->resolution_y / 2;
-					// t_texture tex = mem->mlx_data->textures[ray->tex_num];
+					t_texture tex = mem->mlx_data->textures[ray->tex_num];
 					int y = 0;
 					while (y < mem->mlx_data->resolution_y)
 					{
@@ -127,12 +127,16 @@ void		cast_rays()
 							my_mlx_pixel_put(ray_num, y, mem->resources->ceiling_color);
 						}
 						else if (y > ray->draw_end)
+						{
 							my_mlx_pixel_put(ray_num, y, mem->resources->floor_color);
+						}
 						else
 						{
-							// unsigned int color = *(unsigned int*)(tex.img + ( y * tex.line_length + ray->tex_x * (tex.bpp / 8)));
-							unsigned int color = 0x000000;
-							my_mlx_pixel_put(ray_num, y, color);
+							int tex_y = (int)((y - ray->draw_start) * (double)512 / (ray->draw_end - ray->draw_start));
+							tex_y = (tex_y < 0) ? 0 : tex_y;
+							tex_y = (tex_y >= 512) ? 512 - 1 : tex_y;
+							unsigned int color = *(unsigned int*)(tex.addr + (tex_y * tex.line_length + ray->tex_x * (tex.bpp / 8)));
+								my_mlx_pixel_put(ray_num, y, color);
 						}
 						y++;
 					} 

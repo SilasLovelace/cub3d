@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 10:20:29 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:29:24 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void	set_player_coordinates(char orientation, int x, int y)
 	if (orientation == 'N')
 	{
 		memory->player_pos->dir_x = 0;
-		memory->player_pos->dir_y = 1;
+		memory->player_pos->dir_y = -1;
 	}
 	else if (orientation == 'E')
 	{
@@ -196,7 +196,7 @@ void	set_player_coordinates(char orientation, int x, int y)
 	else if (orientation == 'S')
 	{
 		memory->player_pos->dir_x = 0;
-		memory->player_pos->dir_y = -1;
+		memory->player_pos->dir_y = 1;
 	}
 	else if (orientation == 'W')
 	{

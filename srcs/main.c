@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/10 19:30:47 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:30:13 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	main(int ac, char **av)
 					if (is_valid_map(temp + line))
 					{
 						get_memory()->map_start_row = line;
+						get_memory()->player_pos->y += line;
 						printf("Map input valid\n\n");
 						calculate_map_dimensions();
 					}

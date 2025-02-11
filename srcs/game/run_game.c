@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/10 19:42:30 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:45:40 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,19 +110,19 @@ void	take_images(void)
 		printf("Error\nTexture allocation failed\n");
 		close_game_error();
 	}
-	mlx_get_data_addr(memory->mlx_data->textures[NORTH].img, \
+	memory->mlx_data->textures[NORTH].addr = mlx_get_data_addr(memory->mlx_data->textures[NORTH].img, \
 		&memory->mlx_data->textures[NORTH].bpp, \
 			&memory->mlx_data->textures[NORTH].line_length, \
 				&memory->mlx_data->textures[NORTH].endian);
-	mlx_get_data_addr(memory->mlx_data->textures[SOUTH].img, \
+	memory->mlx_data->textures[SOUTH].addr = mlx_get_data_addr(memory->mlx_data->textures[SOUTH].img, \
 		&memory->mlx_data->textures[SOUTH].bpp, \
 			&memory->mlx_data->textures[SOUTH].line_length, \
 				&memory->mlx_data->textures[SOUTH].endian);
-	mlx_get_data_addr(memory->mlx_data->textures[WEST].img, \
+	memory->mlx_data->textures[WEST].addr = mlx_get_data_addr(memory->mlx_data->textures[WEST].img, \
 		&memory->mlx_data->textures[WEST].bpp, \
 			&memory->mlx_data->textures[WEST].line_length, \
 				&memory->mlx_data->textures[WEST].endian);
-	mlx_get_data_addr(memory->mlx_data->textures[EAST].img, \
+	memory->mlx_data->textures[EAST].addr = mlx_get_data_addr(memory->mlx_data->textures[EAST].img, \
 		&memory->mlx_data->textures[EAST].bpp, \
 			&memory->mlx_data->textures[EAST].line_length, \
 				&memory->mlx_data->textures[EAST].endian);
