@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/11 10:29:24 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:16:26 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,8 +257,7 @@ int	is_valid_map(char **map)
 					|| map[i - 1][j] == ' ' || map[i + 1][j] == ' '
 					|| map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
 				{
-					printf("Error! Map not properly closed at line %d, \
-						position %d\n", i + 1, j + 1);
+					printf("Error! Map not properly closed at line %d, position %d\n", i + 1, j + 1);
 					return (0);
 				}
 			}
