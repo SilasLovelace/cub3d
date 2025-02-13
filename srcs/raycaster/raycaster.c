@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:37:23 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/11 09:52:12 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:19:54 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void	get_texture_dimensions(char *filepath)
 	i = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '"'))
 		i++;
-	memory->mlx_data->tex_width = atoi(line + i);
+	memory->mlx_data->tex_width = ft_atoi(line + i);
 	while (line[i] && line[i] != ' ')
 		i++;
 	while (line[i] && line[i] == ' ')
 		i++;
-	memory->mlx_data->tex_height = atoi(line + i);
+	memory->mlx_data->tex_height = ft_atoi(line + i);
 	get_next_line(fd, false, true);
 	free(line);
 	close(fd);
@@ -74,7 +74,7 @@ void		cast_rays()
 	ray_num = 0;
 	mem = get_memory();
 	angle_per_pixel = M_PI/3 / mem->mlx_data->resolution_x;
-	ray->angle = mem->player_pos->angle - M_PI/6;
+	ray->angle = mem->player_pos->angle - M_PI/6;		
 	while (ray_num < mem->mlx_data->resolution_x)
 	{
 		ray->ray_x = mem->player_pos->x;
