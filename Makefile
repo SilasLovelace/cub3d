@@ -4,7 +4,7 @@
 
 CC			= cc
 RM			= rm -rf
-CFLAGS		= -Wall -Wextra -Werror # -g
+CFLAGS		= -Wall -Wextra -Werror -g
 DFLAGS	 	= -MD -MP
 IFLAGS		= -I $(INCLUDES)
 MAKEFLAGS	= -j$(nproc) --no-print-directory
@@ -16,8 +16,12 @@ INCLUDES	= includes
 
 SRCS		= \
 			$(SRCSDIR)/main.c \
+			$(SRCSDIR)/init/init.c \
 			$(SRCSDIR)/map_tools/map_parser.c \
 			$(SRCSDIR)/map_tools/file_reader.c \
+			$(SRCSDIR)/map_tools/utils.c \
+			$(SRCSDIR)/map_tools/validation.c \
+			$(SRCSDIR)/map_tools/get_data.c \
 			$(SRCSDIR)/test_tools/print.c \
 			$(SRCSDIR)/freeing/freeing.c \
 			$(SRCSDIR)/game/run_game.c \

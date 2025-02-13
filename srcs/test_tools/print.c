@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:07:34 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 17:37:05 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:01:57 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_memory(void)
 		printf("West texture: %s\n", m->resources->west_texture);
 	if (m->resources->east_texture)
 		printf("East texture: %s\n", m->resources->east_texture);
-	printf("Ceiling texture: %d\n", m->resources->ceiling_color);
+	printf("Ceiling color: %d\n", m->resources->ceiling_color);
 	printf("Floor color: %d\n", m->resources->floor_color);
 	printf("Map start row: %d\n", m->map_start_row);
 	printf("Player position: %f, %f\n", m->player_pos->x, m->player_pos->y);

@@ -6,87 +6,11 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/12 15:16:26 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:43:11 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-char	*find_next_comma(char *str)
-{
-	while (*str && *str != ',')
-		str++;
-	return (str);
-}
-
-char	*skip_whitespace(char *str)
-{
-	while (*str && *str == ' ')
-		str++;
-	return (str);
-}
-
-char	*skip_non_whitespace(char *str)
-{
-	while (*str && *str != ' ')
-		str++;
-	return (str);
-}
-
-int	is_valid_map_name(char *map_name)
-{
-	char	*last_dot;
-
-	last_dot = ft_strrchr(map_name, '.');
-	return (last_dot && ft_strncmp(last_dot, ".cub", 4) == 0
-		&& last_dot[4] == '\0'
-		&& ft_strlen(map_name) > 4
-		&& *(last_dot - 1) != '/');
-}
-
-char	**get_resource_dest(char *identifier)
-{
-	if (!ft_strncmp(identifier, "NO ", 3)
-		&& get_memory()->resources->north_texture == NULL)
-		return (&(get_memory()->resources->north_texture));
-	if (!ft_strncmp(identifier, "SO ", 3)
-		&& get_memory()->resources->south_texture == NULL)
-		return (&(get_memory()->resources->south_texture));
-	if (!ft_strncmp(identifier, "WE ", 3)
-		&& get_memory()->resources->west_texture == NULL)
-		return (&(get_memory()->resources->west_texture));
-	if (!ft_strncmp(identifier, "EA ", 3)
-		&& get_memory()->resources->east_texture == NULL)
-		return (&(get_memory()->resources->east_texture));
-	if ((!ft_strncmp(identifier, "NO ", 3)
-			&& get_memory()->resources->north_texture)
-		|| (!ft_strncmp(identifier, "SO ", 3)
-			&& get_memory()->resources->south_texture)
-		|| (!ft_strncmp(identifier, "WE ", 3)
-			&& get_memory()->resources->west_texture)
-		|| (!ft_strncmp(identifier, "EA ", 3)
-			&& get_memory()->resources->east_texture))
-		printf("Error! Multiple definitions for the same element: \
-			%s\n", identifier);
-	return (NULL);
-}
-
-int	*get_color_dest(char *identifier)
-{
-	if (!ft_strncmp(identifier, "C ", 2)
-		&& get_memory()->resources->ceiling_color == -1)
-		return (&(get_memory()->resources->ceiling_color));
-	if (!ft_strncmp(identifier, "F ", 2)
-		&& get_memory()->resources->floor_color == -1)
-		return (&(get_memory()->resources->floor_color));
-	if ((!ft_strncmp(identifier, "C ", 2)
-			&& get_memory()->resources->ceiling_color != -1)
-		|| (!ft_strncmp(identifier, "F ", 2)
-			&& get_memory()->resources->floor_color != -1))
-		printf("Error! Multiple definitions for the same element: \
-			%s\n", identifier);
-	return (NULL);
-}
 
 int	parse_number(char *str, char term)
 {
@@ -105,170 +29,69 @@ int	parse_number(char *str, char term)
 	return (i);
 }
 
-int	is_valid_rgb(char *str)
+int check_resource(int line, char **temp)
 {
-	int	color;
-
-	if (parse_number(str, ',') >= 0)
+	if (is_valid_resource(temp[line]) || *(temp[line]) == '\n')
+		line++;
+	else
 	{
-		color = ft_atoi(str) * 256 * 256;
-		str += parse_number(str, ',') + 1;
+		printf("Error! Invalid resource: %s on line %d\n", \
+			temp[line], line + 1);
+		return (free_memory(), 1);
 	}
-	else
-		return (-1);
-	if (parse_number(str, ',') >= 0)
-	{
-		color += ft_atoi(str) * 256 ;
-		str += parse_number(str, ',') + 1;
-	}
-	else
-		return (-1);
-	if (parse_number(str, ' ') >= 0)
-		color += ft_atoi(str);
-	else
-		return (-1);
-	return (color);
+	return (0);
 }
 
-int	is_valid_resource(char *line)
+int	check_map(int line, char **temp)
 {
-	char	*first_non_ws;
-	char	*begin_info;
-	char	*end_info;
-
-	first_non_ws = skip_whitespace(line);
-	if (!ft_strncmp(first_non_ws, "NO ", 3)
-		|| !ft_strncmp(first_non_ws, "SO ", 3)
-		|| !ft_strncmp(first_non_ws, "WE ", 3)
-		|| !ft_strncmp(first_non_ws, "EA ", 3))
+	while (*(temp[line]) == '\n' )
+		line++;
+	if (is_valid_map(temp + line))
 	{
-		begin_info = skip_whitespace(first_non_ws + 2);
-		if (!ft_strncmp(begin_info, "./", 2) && *(begin_info + 2) != ' ')
-		{
-			end_info = skip_non_whitespace(begin_info + 2);
-			if (!(*(end_info) == '\0' || *skip_whitespace(end_info) == '\n')
-				|| !get_resource_dest(first_non_ws))
-				return (0);
-			if (*(end_info - 1) == '\n')
-				end_info--;
-			*(char**)get_resource_dest(first_non_ws) \
-				= ft_substr(begin_info, 0, end_info - begin_info);
-			return (1);
-		}
-		return (0);
-	}
-	else if (!ft_strncmp(first_non_ws, "C ", 2)
-		|| !ft_strncmp(first_non_ws, "F ", 2))
-	{
-		begin_info = skip_whitespace(first_non_ws + 1);
-		if (is_valid_rgb(begin_info) >= 0)
-		{
-			end_info = skip_non_whitespace(begin_info);
-			if (!(*(end_info) == '\0' || *skip_whitespace(end_info) == '\n')
-				|| !get_color_dest(first_non_ws))
-				return (0);
-			*get_color_dest(first_non_ws) = is_valid_rgb(begin_info);
-			return (1);
-		}
-		return (0);
+		get_memory()->map_start_row = line;
+		get_memory()->player_pos->y += line;
+		printf("Map input valid\n\n");
+		calculate_map_dimensions();
 	}
 	else
-		return (0);
+		return (1);
+	return (0);
 }
 
-void	set_player_coordinates(char orientation, int x, int y)
+int	parse_map(char **av)
 {
-	t_memory	*memory;
+	int		resources_full;
+	int		line;
+	char	**temp;
 
-	memory = get_memory();
-	memory->player_pos->x = x + 0.5;
-	memory->player_pos->y = y + 0.5;
-	if (orientation == 'N')
+    resources_full = 0;
+	line = 0;
+	get_memory()->map = read_file_lines(av[1]);
+	if (!get_memory()->map)
+		return (free_memory(), \
+			printf("Error! Could not read file: %s\n", av[1]), 1);
+	temp = get_memory()->map;
+	while (temp[line])
 	{
-		memory->player_pos->dir_x = 0;
-		memory->player_pos->dir_y = -1;
-	}
-	else if (orientation == 'E')
-	{
-		memory->player_pos->dir_x = 1;
-		memory->player_pos->dir_y = 0;
-	}
-	else if (orientation == 'S')
-	{
-		memory->player_pos->dir_x = 0;
-		memory->player_pos->dir_y = 1;
-	}
-	else if (orientation == 'W')
-	{
-		memory->player_pos->dir_x = -1;
-		memory->player_pos->dir_y = 0;
-	}
-	memory->player_pos->angle = atan2f(memory->player_pos->dir_y, \
-		memory->player_pos->dir_x);
-}
-
-int	is_valid_map(char **map)
-{
-	int	i;
-	int	j;
-	int	player_found;
-
-	if (!map || !map[0])
-		return (0);
-	i = 0;
-	player_found = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
+		if (resources_full == 0)
 		{
-			if (map[i][j] == ' ')
-			{
-				j++;
-				continue ;
-			}
-			if (!ft_strchr("01NSEW\n", map[i][j]))
-			{
-				printf("Error! Invalid character '%c' at line %d, \
-					position %d\n", map[i][j], i + 1, j + 1);
-				return (0);
-			}
-			if (ft_strchr("NSEW", map[i][j]))
-			{
-				if (player_found)
-				{
-					printf("Error! Multiple players found at line %d, \
-						position %d\n", i + 1, j + 1);
-					return (0);
-				}
-				set_player_coordinates(map[i][j], j, i);
-				player_found = 1;
-			}
-			if (ft_strchr("0NSEW", map[i][j]))
-			{
-				if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1])
-				{
-					printf("Error! Map not closed at line %d, \
-						position %d\n", i + 1, j + 1);
-					return (0);
-				}
-				if (j >= (int)ft_strlen(map[i - 1])
-					|| j >= (int)ft_strlen(map[i + 1])
-					|| map[i - 1][j] == ' ' || map[i + 1][j] == ' '
-					|| map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
-				{
-					printf("Error! Map not properly closed at line %d, position %d\n", i + 1, j + 1);
-					return (0);
-				}
-			}
-			j++;
+			if (check_resource(line, temp))
+				return (1);
 		}
-		i++;
+		if (resources_full == 1)
+		{
+			if (check_map(line, temp))
+				return (1);
+			break ;
+		}
+		if (!resources_full
+			&& get_memory()->resources->north_texture
+			&& get_memory()->resources->south_texture
+			&& get_memory()->resources->west_texture
+			&& get_memory()->resources->east_texture
+			&& get_memory()->resources->ceiling_color != -1
+			&& get_memory()->resources->floor_color != -1)
+			resources_full = 1;
 	}
-	if (!player_found)
-	{
-		printf("Error! No player found in map\n");
-		return (0);
-	}
-	return (1);
+	return (0);
 }

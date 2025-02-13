@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/11 09:32:25 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:17:10 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ typedef struct s_ray
 {
 	float	ray_x;
 	float	ray_y;
-	int 	last_x;
-	int 	last_y;
+	int		last_x;
+	int		last_y;
 	float	step_x;
 	float	step_y;
 	float	angle;
@@ -37,8 +37,8 @@ typedef struct s_map_resources
 	char	*east_texture;
 	int		ceiling_color;
 	int		floor_color;
-	int 	map_width;
-	int 	map_height;
+	int		map_width;
+	int		map_height;
 }	t_map_resources;
 
 typedef struct s_coordinates
@@ -71,19 +71,19 @@ typedef struct s_texture
 
 typedef struct s_mlx_data
 {
-	void	*mlx;
-	void	*window;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-	int		resolution_x;
-	int		resolution_y;
-	int		fov;
+	void		*mlx;
+	void		*window;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+	int			resolution_x;
+	int			resolution_y;
+	int			fov;
 	t_texture	textures[4];
-	int		tex_width;
-	int		tex_height;
+	int			tex_width;
+	int			tex_height;
 }	t_mlx_data;
 
 typedef struct s_memory
