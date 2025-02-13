@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/13 15:43:11 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:13:20 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,34 @@ int	parse_number(char *str, char term)
 	return (i);
 }
 
-int check_resource(int line, char **temp)
-{
-	if (is_valid_resource(temp[line]) || *(temp[line]) == '\n')
-		line++;
-	else
-	{
-		printf("Error! Invalid resource: %s on line %d\n", \
-			temp[line], line + 1);
-		return (free_memory(), 1);
-	}
-	return (0);
-}
+// int check_resource(int line, char **temp)
+// {
+// 	if (is_valid_resource(temp[line]) || *(temp[line]) == '\n')
+// 		line++;
+// 	else
+// 	{
+// 		printf("Error! Invalid resource: %s on line %d\n", \
+// 			temp[line], line + 1);
+// 		return (free_memory(), 1);
+// 	}
+// 	return (0);
+// }
 
-int	check_map(int line, char **temp)
-{
-	while (*(temp[line]) == '\n' )
-		line++;
-	if (is_valid_map(temp + line))
-	{
-		get_memory()->map_start_row = line;
-		get_memory()->player_pos->y += line;
-		printf("Map input valid\n\n");
-		calculate_map_dimensions();
-	}
-	else
-		return (1);
-	return (0);
-}
+// int	check_map(int line, char **temp)
+// {
+// 	while (*(temp[line]) == '\n' )
+// 		line++;
+// 	if (is_valid_map(temp + line))
+// 	{
+// 		get_memory()->map_start_row = line;
+// 		get_memory()->player_pos->y += line;
+// 		printf("Map input valid\n\n");
+// 		calculate_map_dimensions();
+// 	}
+// 	else
+// 		return (1);
+// 	return (0);
+// }
 
 int	parse_map(char **av)
 {
@@ -75,12 +75,27 @@ int	parse_map(char **av)
 	{
 		if (resources_full == 0)
 		{
-			if (check_resource(line, temp))
-				return (1);
+			if (is_valid_resource(temp[line]) || *(temp[line]) == '\n')
+				line++;
+			else
+			{
+				printf("Error! Invalid resource: %s on line %d\n", \
+					temp[line], line + 1);
+				return (free_memory(), 1);
+			}
 		}
 		if (resources_full == 1)
 		{
-			if (check_map(line, temp))
+			while (*(temp[line]) == '\n' )
+				line++;
+			if (is_valid_map(temp + line))
+			{
+				get_memory()->map_start_row = line;
+				get_memory()->player_pos->y += line;
+				printf("Map input valid\n\n");
+				calculate_map_dimensions();
+			}
+			else
 				return (1);
 			break ;
 		}

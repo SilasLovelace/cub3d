@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/13 12:10:15 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:07:50 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,12 @@ void	take_images(void)
 	int			width;
 	int			height;
 
+
 	memory = get_memory();
+	printf("north_texture: %s\n", memory->resources->north_texture);
+	printf("south_texture: %s\n", memory->resources->south_texture);
+	printf("west_texture: %s\n", memory->resources->west_texture);
+	printf("east_texture: %s\n", memory->resources->east_texture);
 	get_texture_dimensions(memory->resources->north_texture);
 	memory->mlx_data->textures[NORTH].img = \
 		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
