@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:37:23 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/13 12:19:54 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:59:58 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		cast_rays()
 {
 	t_memory	*mem;
 	t_ray		*ray;
-	int ray_num;
+	int			ray_num;
 	float		angle_per_pixel;
 	
 	ray = malloc(sizeof(t_ray));
@@ -79,6 +79,31 @@ void		cast_rays()
 	{
 		ray->ray_x = mem->player_pos->x;
 		ray->ray_y = mem->player_pos->y;
+		// if (ray_num == 960)
+		// {
+		// 	printf("player angle %f\n", mem->player_pos->angle/M_PI);
+		// 	// int direction_x = (ray->angle/M_PI > 0.5 || ray->angle/M_PI < -0.5) ? -1 : 1;
+		// 	int direction_x = (cos(ray->angle) > 0) ? 1 : -1;
+		// 	printf("direction_x: %d\n", direction_x);
+		// 	if (direction_x < 0)
+		// 		ray->step_x = (ray->ray_x - (int)(ray->ray_x)) * direction_x;
+		// 	else if (direction_x > 0)
+		// 	    ray->step_x = (int)(ray->ray_x + 1) - ray->ray_x;
+		// 	else
+		// 		ray->step_x = 0;
+		// 	printf("step_x: %f\n", ray->step_x);
+		// 	int direction_y = (sin(ray->angle) > 0) ? 1 : -1;
+		// 	printf("direction_y: %d\n", direction_y);
+		// 	printf("tan: %f\n", tan(ray->angle));
+		// 	ray->step_y = (ray->step_x * tan(ray->angle));
+		// 	printf("step_y: %f\n", ray->step_y);
+		// 	ray->ray_x += ray->step_x;
+		// 	ray->ray_y += ray->step_y;
+		// 	printf("player coords x: %f, y: %f\n", mem->player_pos->x, mem->player_pos->y);
+		// 	printf("intersextion x: %f, y: %f\n", ray->ray_x, ray->ray_y);
+		// 	printf("is wall %c\n", mem->map[(int)ray->ray_y][(int)ray->ray_x] == '1' ? 'y' : 'n');
+		// }
+		
 		ray->step_x = cos(ray->angle) / 1000;
 		ray->step_y = sin(ray->angle) / 1000;
 		while (ray->ray_x > 0 && ray->ray_x < mem->resources->map_width

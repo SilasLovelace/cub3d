@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/12 15:14:44 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:09:08 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ int	main(int ac, char **av)
 		{
 			resources_full = 0;
 			line = 0;
-			get_memory()->map = read_file_lines(av[1]);
-			if (!get_memory()->map)
+			get_memory()->input = read_file_lines(av[1]);
+			if (!get_memory()->input)
 				return (free_memory(), \
 					printf("Error! Could not read file: %s\n", av[1]), 1);
-			temp = get_memory()->map;
+			temp = get_memory()->input;
 			while (temp[line])
 			{
 				if (resources_full == 0)
@@ -102,10 +102,24 @@ int	main(int ac, char **av)
 						line++;
 					if (is_valid_map(temp + line))
 					{
-						get_memory()->map_start_row = line;
-						get_memory()->player_pos->y += line;
+						// get_memory()->map_start_row = line;
+						// get_memory()->player_pos->y += line;
 						printf("Map input valid\n\n");
-						calculate_map_dimensions();
+						get_memory()->map = malloc(sizeof(char *) * (get_memory()->resources->map_height + 1));
+						// get_memory()->map[get_memory()->resources->map_height] = NULL;
+						int x = 0;
+						while (temp[line])
+						{
+							// get_memory()->map[x++] = ft_strdup(temp[line++]);
+							get_memory()->map[x++] = malloc(sizeof(char) * (get_memory()->resources->map_width));
+						}
+						get_memory()->map[x] = NULL;
+						print_memory();
+						// while(temp[line])
+						// 	printf("%s", temp[line++]);
+					
+						// get_memory()->actual_map = ft_strdup(temp[line]);
+						// calculate_map_dimensions();
 					}
 					else
 						return (1);
@@ -120,7 +134,7 @@ int	main(int ac, char **av)
 					&& get_memory()->resources->floor_color != -1)
 					resources_full = 1;
 			}
-			run_game();
+			// run_game();
 		}
 		else
 			return (printf("Error! Invalid map name: %s\n", av[1]), 1);

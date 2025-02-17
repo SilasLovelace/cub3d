@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   makros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:40 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/12 16:17:16 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:29:45 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAKROS_H
 # define MAKROS_H
 
-# define SPEED 0.5
+# define SPEED 0.05
 # define STEP_SIZE 0.1
 # define ROT_SPEED M_PI/40
 

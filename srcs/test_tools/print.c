@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:07:34 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/30 17:37:05 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:07:17 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,13 @@ void	print_memory(void)
 		m->mlx_data->resolution_y);
 	printf("Texture dimensions: %d, %d\n", m->mlx_data->tex_width, \
 		m->mlx_data->tex_height);
+	printf("Map width: %d, height: %d\n", m->resources->map_width, \
+		m->resources->map_height);
+	int i = 0;
+	printf("\nMAP:\n\n");
+	while (m->map[i])
+	{
+		printf("%s", m->map[i]);
+		i++;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/12 15:16:26 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:00:39 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void	set_player_coordinates(char orientation, int x, int y)
 		memory->player_pos->dir_x = -1;
 		memory->player_pos->dir_y = 0;
 	}
-	memory->player_pos->angle = atan2f(memory->player_pos->dir_y, \
+	memory->player_pos->angle = atan2f(-memory->player_pos->dir_y, \
 		memory->player_pos->dir_x);
 }
 
@@ -211,12 +211,14 @@ int	is_valid_map(char **map)
 {
 	int	i;
 	int	j;
+	int max_width;
 	int	player_found;
 
 	if (!map || !map[0])
 		return (0);
 	i = 0;
 	player_found = 0;
+	max_width = 0;
 	while (map[i])
 	{
 		j = 0;
@@ -262,6 +264,8 @@ int	is_valid_map(char **map)
 				}
 			}
 			j++;
+			if (j > max_width)
+				max_width = j;
 		}
 		i++;
 	}
@@ -270,5 +274,7 @@ int	is_valid_map(char **map)
 		printf("Error! No player found in map\n");
 		return (0);
 	}
+	get_memory()->resources->map_height = i;
+	get_memory()->resources->map_width = max_width;
 	return (1);
 }
