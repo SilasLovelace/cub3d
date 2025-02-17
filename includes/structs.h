@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/13 13:17:10 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:48:15 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_memory
 {
 	t_mlx_data		*mlx_data;
 	t_map_resources	*resources;
+	char			**input;
 	char			**map;
 	t_coordinates	*player_pos;
 	int				map_start_row;

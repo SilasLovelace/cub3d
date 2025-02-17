@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/13 16:07:50 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:48:07 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,6 @@ void	run_game(void)
 		handle_keypress, memory);
 	mlx_hook(memory->mlx_data->window, KeyRelease, KeyReleaseMask, \
 		handle_keyrelease, memory);
-	print_memory();
 	display();
 	mlx_loop(memory->mlx_data->mlx);
 }
