@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 12:15:17 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:43:45 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,49 +83,48 @@ int	game_loop(t_memory *memory)
 	return (SUCCESS);
 }
 
+void	get_image_by_type(int type, char *tex)
+{
+	t_memory	*memory;
+
+	memory = get_memory();
+	memory->mlx_data->textures[type].img = \
+		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
+			tex, \
+			&memory->mlx_data->textures[type].width, \
+			&memory->mlx_data->textures[type].height);
+}
+
+void	get_image_data(int type)
+{
+	t_memory	*memory;
+
+	memory = get_memory();
+	memory->mlx_data->textures[type].addr = mlx_get_data_addr(memory->mlx_data->textures[type].img, \
+		&memory->mlx_data->textures[type].bpp, \
+			&memory->mlx_data->textures[type].line_length, \
+				&memory->mlx_data->textures[type].endian);
+}
+
 void	take_images(void)
 {
 	t_memory	*memory;
-	int			width;
-	int			height;
-
 
 	memory = get_memory();
-	get_texture_dimensions(memory->resources->north_texture);
-	memory->mlx_data->textures[NORTH].img = \
-		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
-			memory->resources->north_texture, &width, &height);
-	memory->mlx_data->textures[SOUTH].img = \
-		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
-			memory->resources->south_texture, &width, &height);
-	memory->mlx_data->textures[WEST].img = \
-		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
-			memory->resources->west_texture, &width, &height);
-	memory->mlx_data->textures[EAST].img = \
-		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
-			memory->resources->east_texture, &width, &height);
+	get_image_by_type(NORTH, memory->resources->north_texture);
+	get_image_by_type(SOUTH, memory->resources->south_texture);
+	get_image_by_type(WEST, memory->resources->west_texture);
+	get_image_by_type(EAST, memory->resources->east_texture);
 	if (!memory->mlx_data->textures[NORTH].img || !memory->mlx_data->textures[SOUTH].img
 		|| !memory->mlx_data->textures[WEST].img || !memory->mlx_data->textures[EAST].img)
 	{
 		printf("Error\nTexture allocation failed\n");
 		close_game_error();
 	}
-	memory->mlx_data->textures[NORTH].addr = mlx_get_data_addr(memory->mlx_data->textures[NORTH].img, \
-		&memory->mlx_data->textures[NORTH].bpp, \
-			&memory->mlx_data->textures[NORTH].line_length, \
-				&memory->mlx_data->textures[NORTH].endian);
-	memory->mlx_data->textures[SOUTH].addr = mlx_get_data_addr(memory->mlx_data->textures[SOUTH].img, \
-		&memory->mlx_data->textures[SOUTH].bpp, \
-			&memory->mlx_data->textures[SOUTH].line_length, \
-				&memory->mlx_data->textures[SOUTH].endian);
-	memory->mlx_data->textures[WEST].addr = mlx_get_data_addr(memory->mlx_data->textures[WEST].img, \
-		&memory->mlx_data->textures[WEST].bpp, \
-			&memory->mlx_data->textures[WEST].line_length, \
-				&memory->mlx_data->textures[WEST].endian);
-	memory->mlx_data->textures[EAST].addr = mlx_get_data_addr(memory->mlx_data->textures[EAST].img, \
-		&memory->mlx_data->textures[EAST].bpp, \
-			&memory->mlx_data->textures[EAST].line_length, \
-				&memory->mlx_data->textures[EAST].endian);
+	get_image_data(NORTH);
+	get_image_data(SOUTH);
+	get_image_data(WEST);
+	get_image_data(EAST);
 }
 
 void	run_game(void)

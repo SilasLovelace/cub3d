@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 17:46:47 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:18:34 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int	parse_map(char **av)
 				calculate_map_dimensions();
 				printf("Map input valid\n\n");
 				cut_and_fill_map();
+				
 				print_memory();
 			}
 			else
