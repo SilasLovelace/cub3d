@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 11:47:09 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:54:14 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,30 @@ int	parse_map(char **av)
 				line++;
 			if (is_valid_map(temp + line))
 			{
-				get_memory()->map_start_row = line;
-				get_memory()->player_pos->y += line;
+				// get_memory()->map_start_row = line;
+				// get_memory()->player_pos->y += line;
 				printf("Map input valid\n\n");
-				calculate_map_dimensions();
+				get_memory()->map = malloc(sizeof(char *) * (get_memory()->resources->map_height + 1));
+				// get_memory()->map[get_memory()->resources->map_height] = NULL;
+				int x = 0;
+				while (temp[line])
+				{
+					get_memory()->map[x++] = ft_strdup(temp[line++]);
+					// get_memory()->map[x++] = malloc(sizeof(char) * (get_memory()->resources->map_width));
+				}
+				get_memory()->map[x] = NULL;
+				print_memory();
+				// while(temp[line])
+				// 	printf("%s", temp[line++]);
+			
+				// get_memory()->actual_map = ft_strdup(temp[line]);
+				// calculate_map_dimensions();
+
+				
+				// get_memory()->map_start_row = line;
+				// get_memory()->player_pos->y += line;
+				// printf("Map input valid\n\n");
+				// calculate_map_dimensions();
 			}
 			else
 				return (1);
