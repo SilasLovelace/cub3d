@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 12:30:15 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:51:54 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void calculate_map_dimensions(void)
 	}
 		
 	memory->resources->map_width = max_width;
-	memory->resources->map_height = height;
+	memory->resources->map_height = height - memory->map_start_row;
 }
 
 void draw_player_direction(int player_x, int player_y)
@@ -75,10 +75,10 @@ void draw_player_direction(int player_x, int player_y)
 	int dx = dir_x - player_x;
 	int dy = dir_y - player_y;
 	int steps = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy);
-	float x_inc = (float)dx / steps;
-	float y_inc = (float)dy / steps;
-	float x = player_x;
-	float y = player_y;
+	double x_inc = (double)dx / steps;
+	double y_inc = (double)dy / steps;
+	double x = player_x;
+	double y = player_y;
 
 	for (int i = 0; i < steps; i++)
 	{

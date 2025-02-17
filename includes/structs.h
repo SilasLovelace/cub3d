@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 11:48:15 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:45:43 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 typedef struct s_ray
 {
-	float	ray_x;
-	float	ray_y;
+	double	ray_x;
+	double	ray_y;
 	int		last_x;
 	int		last_y;
-	float	step_x;
-	float	step_y;
-	float	angle;
+	double	step_x;
+	double	step_y;
+	double	angle;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -43,11 +43,11 @@ typedef struct s_map_resources
 
 typedef struct s_coordinates
 {
-	float	x;
-	float	y;
-	float	dir_x;
-	float	dir_y;
-	float	angle;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	angle;
 }	t_coordinates;
 
 typedef struct s_keys

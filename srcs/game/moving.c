@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:33:35 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/13 13:36:42 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:45:43 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	move_forward(void)
 {
 	t_memory	*memory = get_memory();
-	float		move_x = memory->player_pos->dir_x * SPEED;
-	float		move_y = memory->player_pos->dir_y * SPEED;
-	float		new_x, new_y;
-	float		step_x, step_y;
+	double		move_x = memory->player_pos->dir_x * SPEED;
+	double		move_y = memory->player_pos->dir_y * SPEED;
+	double		new_x, new_y;
+	double		step_x, step_y;
 	int			steps;
 
 	steps = (int)(fmax(fabs(move_x), fabs(move_y)) / 0.1f) + 1;
@@ -40,10 +40,10 @@ void	move_forward(void)
 void	move_backward(void)
 {
 	t_memory	*memory = get_memory();
-	float		move_x = -memory->player_pos->dir_x * SPEED;
-	float		move_y = -memory->player_pos->dir_y * SPEED;
-	float		new_x, new_y;
-	float		step_x, step_y;
+	double		move_x = -memory->player_pos->dir_x * SPEED;
+	double		move_y = -memory->player_pos->dir_y * SPEED;
+	double		new_x, new_y;
+	double		step_x, step_y;
 	int			steps;
 		
 	steps = (int)(fmax(fabs(move_x), fabs(move_y)) / 0.1f) + 1;
@@ -65,10 +65,10 @@ void	move_backward(void)
 void	move_left(void)
 {
 	t_memory	*memory = get_memory();
-	float		move_x = memory->player_pos->dir_y * SPEED;
-	float		move_y = -memory->player_pos->dir_x * SPEED;
-	float		new_x, new_y;
-	float		step_x, step_y;
+	double		move_x = memory->player_pos->dir_y * SPEED;
+	double		move_y = -memory->player_pos->dir_x * SPEED;
+	double		new_x, new_y;
+	double		step_x, step_y;
 	int			steps;
 		
 	steps = (int)(fmax(fabs(move_x), fabs(move_y)) / 0.1f) + 1;
@@ -90,10 +90,10 @@ void	move_left(void)
 void	move_right(void)
 {
 	t_memory	*memory = get_memory();
-	float		move_x = -memory->player_pos->dir_y * SPEED;
-	float		move_y = memory->player_pos->dir_x * SPEED;
-	float		new_x, new_y;
-	float		step_x, step_y;
+	double		move_x = -memory->player_pos->dir_y * SPEED;
+	double		move_y = memory->player_pos->dir_x * SPEED;
+	double		new_x, new_y;
+	double		step_x, step_y;
 	int			steps;
 		
 	steps = (int)(fmax(fabs(move_x), fabs(move_y)) / 0.1f) + 1;

@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 09:25:34 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/13 13:28:56 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:45:43 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	rotate_right(void)
 {
 	t_memory	*memory;
-	float		old_dir_x;
+	double		old_dir_x;
 
 	memory = get_memory();
 	old_dir_x = memory->player_pos->dir_x;
@@ -30,7 +30,7 @@ void	rotate_right(void)
 void	rotate_left(void)
 {
 	t_memory	*memory;
-	float		old_dir_x;
+	double		old_dir_x;
 
 	memory = get_memory();
 	old_dir_x = memory->player_pos->dir_x;
