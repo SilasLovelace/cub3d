@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 11:54:14 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:57:39 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,35 @@ int	parse_number(char *str, char term)
 // 	return (0);
 // }
 
+void	cut_and_fill_map()
+{
+	int line;
+	int x;
+	
+	x = 0;
+	line = get_memory()->map_start_row;
+	get_memory()->map = malloc(sizeof(char *) * (get_memory()->resources->map_height + 1));
+	while (get_memory()->input[line])
+	{
+		get_memory()->map[x] = malloc(sizeof(char) * (get_memory()->resources->map_width));
+		int d = 0;
+		while (get_memory()->input[line][d] || d < get_memory()->resources->map_width)
+		{
+			if (get_memory()->input[line][d] == ' ' || d >= (int)ft_strlen(get_memory()->input[line]) - 1)
+				get_memory()->map[x][d] = '1';
+			else
+				get_memory()->map[x][d] = get_memory()->input[line][d];
+			d++;
+		}
+		get_memory()->map[x][d] = '\0';
+		if (x == 0 || x == 1)
+			printf("d: %d\n", d);
+		x++;
+		line++;
+	}
+	get_memory()->map[x] = NULL;
+}
+
 int	parse_map(char **av)
 {
 	int		resources_full;
@@ -66,11 +95,11 @@ int	parse_map(char **av)
 
     resources_full = 0;
 	line = 0;
-	get_memory()->map = read_file_lines(av[1]);
-	if (!get_memory()->map)
+	get_memory()->input = read_file_lines(av[1]);
+	if (!get_memory()->input)
 		return (free_memory(), \
 			printf("Error! Could not read file: %s\n", av[1]), 1);
-	temp = get_memory()->map;
+	temp = get_memory()->input;
 	while (temp[line])
 	{
 		if (resources_full == 0)
@@ -90,24 +119,17 @@ int	parse_map(char **av)
 				line++;
 			if (is_valid_map(temp + line))
 			{
-				// get_memory()->map_start_row = line;
+				get_memory()->map_start_row = line;
 				// get_memory()->player_pos->y += line;
+				calculate_map_dimensions();
 				printf("Map input valid\n\n");
-				get_memory()->map = malloc(sizeof(char *) * (get_memory()->resources->map_height + 1));
-				// get_memory()->map[get_memory()->resources->map_height] = NULL;
-				int x = 0;
-				while (temp[line])
-				{
-					get_memory()->map[x++] = ft_strdup(temp[line++]);
-					// get_memory()->map[x++] = malloc(sizeof(char) * (get_memory()->resources->map_width));
-				}
-				get_memory()->map[x] = NULL;
+				printf("map height = %d\n", get_memory()->resources->map_height);
+				cut_and_fill_map();
 				print_memory();
 				// while(temp[line])
 				// 	printf("%s", temp[line++]);
 			
 				// get_memory()->actual_map = ft_strdup(temp[line]);
-				// calculate_map_dimensions();
 
 				
 				// get_memory()->map_start_row = line;

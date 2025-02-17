@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/12 17:36:21 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:30:15 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void calculate_map_dimensions(void)
 	int max_width = 0;
 	int height = 0;
 
-	while (memory->map[height])
+	while (memory->input[height])
 	{
-		int current_width = ft_strlen(memory->map[height]);
+		int current_width = ft_strlen(memory->input[height]);
 		if (current_width > max_width)
 			max_width = current_width;
 		height++;
