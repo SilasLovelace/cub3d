@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:56:48 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 14:58:30 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:59:14 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ void	set_player_coordinates(char orientation, int x, int y)
 		memory->player_pos->dir_x = -1;
 		memory->player_pos->dir_y = 0;
 	}
-	memory->player_pos->angle = atan2f(memory->player_pos->dir_y, \
-		memory->player_pos->dir_x);
+	memory->player_pos->angle = atan2(memory->player_pos->dir_y, memory->player_pos->dir_x);
 }

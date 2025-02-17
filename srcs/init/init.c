@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:20:42 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/13 13:20:52 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:00:30 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_memory	*get_memory(void)
 			return (NULL);
 		}
 		ft_bzero(memory->keys, sizeof(t_keys));
-		memory->mlx_data->resolution_x = 1920;
-		memory->mlx_data->resolution_y = 1080;
+		memory->mlx_data->resolution_x = 640;
+		memory->mlx_data->resolution_y = 480;
 		memory->resources->ceiling_color = -1;
 		memory->resources->floor_color = -1;
 	}
