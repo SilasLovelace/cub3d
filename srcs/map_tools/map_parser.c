@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 16:11:04 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:46:47 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,52 +29,42 @@ int	parse_number(char *str, char term)
 	return (i);
 }
 
-// int check_resource(int line, char **temp)
-// {
-// 	if (is_valid_resource(temp[line]) || *(temp[line]) == '\n')
-// 		line++;
-// 	else
-// 	{
-// 		printf("Error! Invalid resource: %s on line %d\n", \
-// 			temp[line], line + 1);
-// 		return (free_memory(), 1);
-// 	}
-// 	return (0);
-// }
+static void calculate_map_dimensions(void)
+{
+	t_memory *memory = get_memory();
+	int max_width = 0;
+	int height = 0;
 
-// int	check_map(int line, char **temp)
-// {
-// 	while (*(temp[line]) == '\n' )
-// 		line++;
-// 	if (is_valid_map(temp + line))
-// 	{
-// 		get_memory()->map_start_row = line;
-// 		get_memory()->player_pos->y += line;
-// 		printf("Map input valid\n\n");
-// 		calculate_map_dimensions();
-// 	}
-// 	else
-// 		return (1);
-// 	return (0);
-// }
+	while (memory->input[height])
+	{
+		int current_width = ft_strlen(memory->input[height]);
+		if (current_width > max_width)
+			max_width = current_width;
+		height++;
+	}
+		
+	memory->resources->map_width = max_width;
+	memory->resources->map_height = height - memory->map_start_row;
+}
 
-void	cut_and_fill_map()
+static void cut_and_fill_map()
 {
 	int line;
 	int x;
-	
+	int d;
+	int input_len;
+		
 	x = 0;
 	line = get_memory()->map_start_row;
 	get_memory()->map = malloc(sizeof(char *) * (get_memory()->resources->map_height + 1));
 	while (get_memory()->input[line])
 	{
-		get_memory()->map[x] = malloc(sizeof(char) * (get_memory()->resources->map_width));
-		int d = 0;
-		if (get_memory()->input[line][d] == '\n')
-			printf("d: %d\n", d);
-		while (get_memory()->input[line][d] || d < get_memory()->resources->map_width)
+		get_memory()->map[x] = malloc(sizeof(char) * (get_memory()->resources->map_width + 1));
+		d = 0;
+		input_len = ft_strlen(get_memory()->input[line]);
+		while (d < get_memory()->resources->map_width)
 		{
-			if (get_memory()->input[line][d] == ' ' || d >= (int)ft_strlen(get_memory()->input[line]) - 1)
+			if (d >= input_len || get_memory()->input[line][d] == ' ' ||  get_memory()->input[line][d] == '\n')
 				get_memory()->map[x][d] = '1';
 			else
 				get_memory()->map[x][d] = get_memory()->input[line][d];
@@ -120,22 +110,10 @@ int	parse_map(char **av)
 			if (is_valid_map(temp + line))
 			{
 				get_memory()->map_start_row = line;
-				// get_memory()->player_pos->y += line;
 				calculate_map_dimensions();
 				printf("Map input valid\n\n");
-				printf("map height = %d\n", get_memory()->resources->map_height);
 				cut_and_fill_map();
 				print_memory();
-				// while(temp[line])
-				// 	printf("%s", temp[line++]);
-			
-				// get_memory()->actual_map = ft_strdup(temp[line]);
-
-				
-				// get_memory()->map_start_row = line;
-				// get_memory()->player_pos->y += line;
-				// printf("Map input valid\n\n");
-				// calculate_map_dimensions();
 			}
 			else
 				return (1);

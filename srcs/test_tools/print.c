@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:07:34 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 13:57:56 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:10:03 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	print_memory(void)
 	printf("\nMAP:\n\n");
 	while (m->map[i])
 	{
-		printf("%s\n", m->map[i]);
+		ft_putstr_fd(m->map[i], 1);
+		ft_putstr_fd("\n", 1);
 		i++;
 	}
 	printf("\n");
