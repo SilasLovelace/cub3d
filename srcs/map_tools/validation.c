@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:59:19 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 15:08:50 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:03:28 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ int	is_valid_map(char **map)
 				}
 				if (j >= (int)ft_strlen(map[i - 1])
 					|| j >= (int)ft_strlen(map[i + 1])
-					|| (map[i - 1][j] == ' ') || map[i + 1][j] == ' '
-					|| map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+					|| ((map[i - 1][j] == ' ' || map[i - 1][j] == '\n')) || (map[i + 1][j] == ' ' || map[i + 1][j] == '\n')
+					|| map[i][j - 1] == ' ' || (map[i][j + 1] == ' ' || map[i][j + 1] == '\n'))
 				{
 					printf("Error! Map not properly closed at line %d, position %d\n", i + 1, j + 1);
 					return (0);

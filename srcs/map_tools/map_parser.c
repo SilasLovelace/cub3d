@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 13:57:39 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:11:04 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	cut_and_fill_map()
 	{
 		get_memory()->map[x] = malloc(sizeof(char) * (get_memory()->resources->map_width));
 		int d = 0;
+		if (get_memory()->input[line][d] == '\n')
+			printf("d: %d\n", d);
 		while (get_memory()->input[line][d] || d < get_memory()->resources->map_width)
 		{
 			if (get_memory()->input[line][d] == ' ' || d >= (int)ft_strlen(get_memory()->input[line]) - 1)
@@ -79,8 +81,6 @@ void	cut_and_fill_map()
 			d++;
 		}
 		get_memory()->map[x][d] = '\0';
-		if (x == 0 || x == 1)
-			printf("d: %d\n", d);
 		x++;
 		line++;
 	}
