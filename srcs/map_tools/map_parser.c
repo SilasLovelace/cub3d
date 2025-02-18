@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 11:13:34 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:10:14 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,49 @@ static bool	check_resources(int resources_full)
 		&& get_memory()->resources->floor_color != -1);
 }
 
+int	copy_map(char **temp, int line)
+{
+	if (is_valid_map(temp + line))
+	{
+		get_memory()->map_start_row = line;
+		calculate_map_dimensions();
+		cut_and_fill_map();
+		return (0);
+	}
+	else
+		return (1);
+}
+
+int	process_map(int *resources_full, char **temp, int *line)
+{
+	if (*resources_full == 0)
+	{
+		if (is_valid_resource(temp[*line]) || *(temp[*line]) == '\n')
+			(*line)++;
+		else
+		{
+			printf("Error! Invalid resource: %s on line %d\n", \
+				temp[*line], *line + 1);
+			return (free_memory(), 1);
+		}
+	}
+	if (*resources_full == 1)
+	{
+		while (*(temp[*line]) == '\n' )
+			(*line)++;
+		if (copy_map(temp, *line))
+			return (1);
+		return (2);
+	}
+	return (0);
+}
+
 int	parse_map(char **av)
 {
 	int		resources_full;
 	int		line;
 	char	**temp;
+	int		res;
 
 	resources_full = 0;
 	line = 0;
@@ -59,32 +97,11 @@ int	parse_map(char **av)
 	temp = get_memory()->input;
 	while (temp[line])
 	{
-		if (resources_full == 0)
-		{
-			if (is_valid_resource(temp[line]) || *(temp[line]) == '\n')
-				line++;
-			else
-			{
-				printf("Error! Invalid resource: %s on line %d\n", \
-					temp[line], line + 1);
-				return (free_memory(), 1);
-			}
-		}
-		if (resources_full == 1)
-		{
-			while (*(temp[line]) == '\n' )
-				line++;
-			if (is_valid_map(temp + line))
-			{
-				get_memory()->map_start_row = line;
-				calculate_map_dimensions();
-				cut_and_fill_map();
-				// print_memory();
-			}
-			else
-				return (1);
+		res = process_map(&resources_full, temp, &line);
+		if (res == 1)
+			return (1);
+		if (res == 2)
 			break ;
-		}
 		if (check_resources(resources_full))
 			resources_full = 1;
 	}
