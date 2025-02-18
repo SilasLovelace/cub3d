@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 11:49:14 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:32:31 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,17 @@ typedef struct s_mlx_data
 	int			tex_width;
 	int			tex_height;
 }	t_mlx_data;
+
+typedef struct s_move_data
+{
+	double	move_x;
+	double	move_y;
+	double	new_x;
+	double	new_y;
+	double	step_x;
+	double	step_y;
+	int		steps;
+}	t_move_data;
 
 typedef struct s_memory
 {
