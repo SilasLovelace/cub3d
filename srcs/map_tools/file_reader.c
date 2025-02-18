@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:37:09 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 08:27:20 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:09:05 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ static bool	read_lines_into_array(int fd, char **lines, int line_count)
 		if (flag)
 		{
 			printf("Error! Memory allocation failed\n");
-			free_memory();
-			exit(1);
+			while (--i >= 0)
+				free(lines[i]);
+			return (free(lines), close(fd), false);
 		}
 		if (!lines[i])
 		{

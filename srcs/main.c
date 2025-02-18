@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 11:35:51 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:09:40 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int ac, char **av)
 {
 	if (ac == 2)
 	{
-		get_memory();
+		if (get_memory() == NULL)
+			return (printf("Error\nMemory allocation failed\n"), 1);
 		if (is_valid_map_name(av[1]))
 		{
 			if (parse_map(av))

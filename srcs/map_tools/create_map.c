@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 08:42:57 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/18 09:40:24 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:45:16 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,14 @@ void	cut_and_fill_map(void)
 	line = get_memory()->map_start_row;
 	get_memory()->map = malloc(sizeof(char *) * \
 		(get_memory()->resources->map_height + 1));
+	if (!get_memory()->map)
+		close_game_error();
 	while (get_memory()->input[line])
 	{
 		get_memory()->map[x] = malloc(sizeof(char) * \
 			(get_memory()->resources->map_width + 1));
+		if (!get_memory()->map[x])
+			close_game_error();
 		fill_map_line(get_memory()->map[x], \
 			get_memory()->input[line], \
 			get_memory()->resources->map_width);
