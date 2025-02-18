@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:37:19 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 18:20:10 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:49:14 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 typedef struct s_ray
 {
+	double	angle_per_pixel;
+	double 	distance;
+	int		ray_num;
 	double	ray_x;
 	double	ray_y;
 	int		last_x;
@@ -27,6 +30,7 @@ typedef struct s_ray
 	int		draw_end;
 	int		tex_num;
 	int		tex_x;
+	int		y_iterator;
 }	t_ray;
 
 typedef struct s_map_resources
