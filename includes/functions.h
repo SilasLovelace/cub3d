@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 11:00:51 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:02:12 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_memory	*get_memory(void);
 void		free_memory(void);
 
 //test_tools/print_states.c
-void		print_memory(void);
+// void		print_memory(void);
 
 //map_tools/utils.c
 char		*find_next_comma(char *str);
@@ -37,7 +37,7 @@ int			is_valid_map(char **map);
 int			is_valid_resource(char *line);
 
 //map_tools/create_map.c
-void	    cut_and_fill_map(void);
+void		cut_and_fill_map(void);
 
 //map_tools/map_parser.c
 int			parse_map(char **av);
@@ -52,11 +52,18 @@ char		**read_file_lines(const char *filename);
 //game/run_game.c
 void		run_game(void);
 
+//game/handlers.c
+int	handle_keypress(int key, t_memory *memory);
+int	handle_keyrelease(int key, t_memory *memory);
+
 //game/moving.c
 void		move_forward(void);
 void		move_backward(void);
 void		move_left(void);
 void		move_right(void);
+
+//game/images.c
+void		take_images(void);
 
 //game/rotation.c
 void		rotate_left(void);

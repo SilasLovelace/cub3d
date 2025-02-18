@@ -3,131 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 18:43:45 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:06:43 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	handle_keypress(int key, t_memory *memory)
+static void	action(void)
 {
-	if (key == XK_Escape)
-		close_game();
-	if (key == XK_w)
-		memory->keys->w_pressed = 1;
-	if (key == XK_s)
-		memory->keys->s_pressed = 1;
-	if (key == XK_a)
-		memory->keys->a_pressed = 1;
-	if (key == XK_d)
-		memory->keys->d_pressed = 1;
-	if (key == XK_Left)
-		memory->keys->left_pressed = 1;
-	if (key == XK_Right)
-		memory->keys->right_pressed = 1;
-	return (SUCCESS);
-}
-
-int	handle_keyrelease(int key, t_memory *memory)
-{
-	if (key == XK_w)
-		memory->keys->w_pressed = 0;
-	if (key == XK_s)
-		memory->keys->s_pressed = 0;
-	if (key == XK_a)
-		memory->keys->a_pressed = 0;
-	if (key == XK_d)
-		memory->keys->d_pressed = 0;
-	if (key == XK_Left)
-		memory->keys->left_pressed = 0;
-	if (key == XK_Right)
-		memory->keys->right_pressed = 0;
-	return (SUCCESS);
-}
-
-int	game_loop(t_memory *memory)
-{
-	if (memory->keys->w_pressed)
-	{
+	if (get_memory()->keys->w_pressed)
 		move_forward();
-		display();
-	}
-	if (memory->keys->s_pressed)
-	{
+	if (get_memory()->keys->s_pressed)
 		move_backward();
-		display();
-	}
-	if (memory->keys->a_pressed)
-	{
+	if (get_memory()->keys->a_pressed)
 		move_left();
-		display();	
-	}
-	if (memory->keys->d_pressed)
-	{
+	if (get_memory()->keys->d_pressed)
 		move_right();
-		display();
-	}
-	if (memory->keys->left_pressed)
-	{
+	if (get_memory()->keys->left_pressed)
 		rotate_left();
-		display();
-	}
-	if (memory->keys->right_pressed)
-	{
+	if (get_memory()->keys->right_pressed)
 		rotate_right();
+}
+
+static int	game_loop(t_memory *memory)
+{
+	if (memory->keys->w_pressed || memory->keys->s_pressed
+		|| memory->keys->a_pressed || memory->keys->d_pressed
+		|| memory->keys->left_pressed || memory->keys->right_pressed)
+	{
+		action();
 		display();
 	}
 	return (SUCCESS);
 }
 
-void	get_image_by_type(int type, char *tex)
-{
-	t_memory	*memory;
-
-	memory = get_memory();
-	memory->mlx_data->textures[type].img = \
-		mlx_xpm_file_to_image(memory->mlx_data->mlx, \
-			tex, \
-			&memory->mlx_data->textures[type].width, \
-			&memory->mlx_data->textures[type].height);
-}
-
-void	get_image_data(int type)
-{
-	t_memory	*memory;
-
-	memory = get_memory();
-	memory->mlx_data->textures[type].addr = mlx_get_data_addr(memory->mlx_data->textures[type].img, \
-		&memory->mlx_data->textures[type].bpp, \
-			&memory->mlx_data->textures[type].line_length, \
-				&memory->mlx_data->textures[type].endian);
-}
-
-void	take_images(void)
-{
-	t_memory	*memory;
-
-	memory = get_memory();
-	get_image_by_type(NORTH, memory->resources->north_texture);
-	get_image_by_type(SOUTH, memory->resources->south_texture);
-	get_image_by_type(WEST, memory->resources->west_texture);
-	get_image_by_type(EAST, memory->resources->east_texture);
-	if (!memory->mlx_data->textures[NORTH].img || !memory->mlx_data->textures[SOUTH].img
-		|| !memory->mlx_data->textures[WEST].img || !memory->mlx_data->textures[EAST].img)
-	{
-		printf("Error\nTexture allocation failed\n");
-		close_game_error();
-	}
-	get_image_data(NORTH);
-	get_image_data(SOUTH);
-	get_image_data(WEST);
-	get_image_data(EAST);
-}
-
-void	run_game(void)
+static void	init_data(void)
 {
 	t_memory	*memory;
 
@@ -150,11 +63,23 @@ void	run_game(void)
 		memory->mlx_data->mlx = NULL;
 		return ;
 	}
+}
+
+void	run_game(void)
+{
+	t_memory	*memory;
+
+	memory = get_memory();
+	init_data();
 	memory->mlx_data->img = mlx_new_image(memory->mlx_data->mlx, \
 		memory->mlx_data->resolution_x, memory->mlx_data->resolution_y);
+	if (!memory->mlx_data->img)
+		close_game_error();
 	memory->mlx_data->addr = mlx_get_data_addr(memory->mlx_data->img, \
 		&memory->mlx_data->bpp, &memory->mlx_data->line_length, \
 		&memory->mlx_data->endian);
+	if (!memory->mlx_data->addr)
+		close_game_error();
 	mlx_loop_hook(memory->mlx_data->mlx, game_loop, memory);
 	mlx_hook(memory->mlx_data->window, DestroyNotify, StructureNotifyMask, \
 		&close_game, memory);

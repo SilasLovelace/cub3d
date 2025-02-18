@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:20:42 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 18:38:19 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:36:03 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ t_memory	*get_memory(void)
 			return (NULL);
 		}
 		ft_bzero(memory->mlx_data, sizeof(t_mlx_data));
-		
 		memory->keys = malloc(sizeof(t_keys));
 		if (!memory->keys)
 		{
 			free(memory->resources);
 			free(memory->player_pos);
 			free(memory->mlx_data);
-			free(memory->mlx_data->textures);
+			// free(memory->mlx_data->textures);
 			free(memory);
 			return (NULL);
 		}

@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 09:30:41 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:13:34 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	parse_map(char **av)
 				get_memory()->map_start_row = line;
 				calculate_map_dimensions();
 				cut_and_fill_map();
-				print_memory();
+				// print_memory();
 			}
 			else
 				return (1);
