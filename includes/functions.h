@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 17:42:46 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:00:51 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ char		*skip_non_whitespace(char *str);
 void		set_player_coordinates(char orientation, int x, int y);
 
 //map_tools/validation.c
-int			is_valid_map_name(char *map_name);
-int			is_valid_rgb(char *str);
-int			is_valid_resource(char *line);
 int			is_valid_map(char **map);
 
+//map_tools/validation_utils.c
+int			is_valid_resource(char *line);
+
+//map_tools/create_map.c
+void	    cut_and_fill_map(void);
+
 //map_tools/map_parser.c
-int			parse_number(char *str, char term);
 int			parse_map(char **av);
 
 //map_tools/get_data.c

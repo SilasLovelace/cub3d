@@ -3,78 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 18:18:34 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:30:41 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	parse_number(char *str, char term)
+static void	calculate_map_dimensions(void)
 {
-	int		i;
-	char	*start;
+	t_memory	*memory;
+	int			max_width;
+	int			height;
+	int			current_width;
 
-	i = 0;
-	start = str;
-	while (*str && ft_isdigit(*str))
-	{
-		str++;
-		i++;
-	}
-	if (i > 3 || (*str != term && *str != '\n') || ft_atoi(start) > 255)
-		return (-1);
-	return (i);
-}
-
-static void calculate_map_dimensions(void)
-{
-	t_memory *memory = get_memory();
-	int max_width = 0;
-	int height = 0;
-
+	memory = get_memory();
+	max_width = 0;
+	height = 0;
 	while (memory->input[height])
 	{
-		int current_width = ft_strlen(memory->input[height]);
+		current_width = ft_strlen(memory->input[height]);
 		if (current_width > max_width)
 			max_width = current_width;
 		height++;
 	}
-		
 	memory->resources->map_width = max_width;
 	memory->resources->map_height = height - memory->map_start_row;
 }
 
-static void cut_and_fill_map()
+static bool	check_resources(int resources_full)
 {
-	int line;
-	int x;
-	int d;
-	int input_len;
-		
-	x = 0;
-	line = get_memory()->map_start_row;
-	get_memory()->map = malloc(sizeof(char *) * (get_memory()->resources->map_height + 1));
-	while (get_memory()->input[line])
-	{
-		get_memory()->map[x] = malloc(sizeof(char) * (get_memory()->resources->map_width + 1));
-		d = 0;
-		input_len = ft_strlen(get_memory()->input[line]);
-		while (d < get_memory()->resources->map_width)
-		{
-			if (d >= input_len || get_memory()->input[line][d] == ' ' ||  get_memory()->input[line][d] == '\n')
-				get_memory()->map[x][d] = '1';
-			else
-				get_memory()->map[x][d] = get_memory()->input[line][d];
-			d++;
-		}
-		get_memory()->map[x][d] = '\0';
-		x++;
-		line++;
-	}
-	get_memory()->map[x] = NULL;
+	return (!resources_full
+		&& get_memory()->resources->north_texture
+		&& get_memory()->resources->south_texture
+		&& get_memory()->resources->west_texture
+		&& get_memory()->resources->east_texture
+		&& get_memory()->resources->ceiling_color != -1
+		&& get_memory()->resources->floor_color != -1);
 }
 
 int	parse_map(char **av)
@@ -83,7 +50,7 @@ int	parse_map(char **av)
 	int		line;
 	char	**temp;
 
-    resources_full = 0;
+	resources_full = 0;
 	line = 0;
 	get_memory()->input = read_file_lines(av[1]);
 	if (!get_memory()->input)
@@ -111,22 +78,14 @@ int	parse_map(char **av)
 			{
 				get_memory()->map_start_row = line;
 				calculate_map_dimensions();
-				printf("Map input valid\n\n");
 				cut_and_fill_map();
-				
 				print_memory();
 			}
 			else
 				return (1);
 			break ;
 		}
-		if (!resources_full
-			&& get_memory()->resources->north_texture
-			&& get_memory()->resources->south_texture
-			&& get_memory()->resources->west_texture
-			&& get_memory()->resources->east_texture
-			&& get_memory()->resources->ceiling_color != -1
-			&& get_memory()->resources->floor_color != -1)
+		if (check_resources(resources_full))
 			resources_full = 1;
 	}
 	return (0);

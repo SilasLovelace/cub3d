@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:56:48 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 14:58:30 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:28:48 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,8 @@ char	*skip_non_whitespace(char *str)
 	return (str);
 }
 
-void	set_player_coordinates(char orientation, int x, int y)
+static void	set_directions(t_memory *memory, char orientation)
 {
-	t_memory	*memory;
-
-	memory = get_memory();
-	memory->player_pos->x = x + 0.5;
-	memory->player_pos->y = y + 0.5;
 	if (orientation == 'N')
 	{
 		memory->player_pos->dir_x = 0;
@@ -60,6 +55,16 @@ void	set_player_coordinates(char orientation, int x, int y)
 		memory->player_pos->dir_x = -1;
 		memory->player_pos->dir_y = 0;
 	}
+}
+
+void	set_player_coordinates(char orientation, int x, int y)
+{
+	t_memory	*memory;
+
+	memory = get_memory();
+	memory->player_pos->x = x + 0.5;
+	memory->player_pos->y = y + 0.5;
+	set_directions(memory, orientation);
 	memory->player_pos->angle = atan2f(memory->player_pos->dir_y, \
 		memory->player_pos->dir_x);
 }

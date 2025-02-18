@@ -17,10 +17,12 @@ INCLUDES	= includes
 SRCS		= \
 			$(SRCSDIR)/main.c \
 			$(SRCSDIR)/init/init.c \
+			$(SRCSDIR)/map_tools/create_map.c \
 			$(SRCSDIR)/map_tools/map_parser.c \
 			$(SRCSDIR)/map_tools/file_reader.c \
 			$(SRCSDIR)/map_tools/utils.c \
 			$(SRCSDIR)/map_tools/validation.c \
+			$(SRCSDIR)/map_tools/validation_utils.c \
 			$(SRCSDIR)/map_tools/get_data.c \
 			$(SRCSDIR)/test_tools/print.c \
 			$(SRCSDIR)/freeing/freeing.c \

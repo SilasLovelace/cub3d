@@ -6,26 +6,20 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:37:09 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 08:12:37 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:27:20 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-char	**read_file_lines(const char *filename)
+static int	count_lines(int fd)
 {
-	int		fd;
-	char	*line;
-	char	**lines;
-	int		line_count;
-	int		i;
 	bool	flag;
+	int		counter;
+	char	*line;
 
 	flag = false;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
-	line_count = 0;
+	counter = 0;
 	while (1)
 	{
 		line = get_next_line(fd, &flag, false);
@@ -37,19 +31,18 @@ char	**read_file_lines(const char *filename)
 		}
 		if (!line)
 			break ;
-		line_count++;
+		counter++;
 		free(line);
 	}
-	close(fd);
-	lines = malloc(sizeof(char *) * (line_count + 1));
-	if (!lines)
-		return (NULL);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		free(lines);
-		return (NULL);
-	}
+	return (counter);
+}
+
+static bool	read_lines_into_array(int fd, char **lines, int line_count)
+{
+	int		i;
+	bool	flag;
+
+	flag = false;
 	i = 0;
 	while (i < line_count)
 	{
@@ -64,13 +57,38 @@ char	**read_file_lines(const char *filename)
 		{
 			while (--i >= 0)
 				free(lines[i]);
-			free(lines);
-			close(fd);
-			return (NULL);
+			return (free(lines), close(fd), false);
 		}
 		i++;
 	}
 	lines[i] = NULL;
+	return (true);
+}
+
+char	**read_file_lines(const char *filename)
+{
+	int		fd;
+	char	**lines;
+	int		line_count;
+	bool	flag;
+
+	flag = false;
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	line_count = count_lines(fd);
+	close(fd);
+	lines = malloc(sizeof(char *) * (line_count + 1));
+	if (!lines)
+		return (NULL);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		free(lines);
+		return (NULL);
+	}
+	if (!read_lines_into_array(fd, lines, line_count))
+		return (NULL);
 	close(fd);
 	return (lines);
 }
