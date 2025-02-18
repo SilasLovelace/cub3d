@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 14:03:54 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:50:34 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ char		**read_file_lines(const char *filename);
 void		run_game(void);
 
 //game/handlers.c
-int	handle_keypress(int key, t_memory *memory);
-int	handle_keyrelease(int key, t_memory *memory);
+int			handle_keypress(int key, t_memory *memory);
+int			handle_keyrelease(int key, t_memory *memory);
 
 //game/moving.c
 void		move_forward(void);
