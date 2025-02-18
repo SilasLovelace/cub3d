@@ -3,23 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   freeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:32:08 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/31 09:16:39 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:46:06 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	free_memory(void)
+void	free_map(void)
 {
 	t_memory	*m;
-	static int	freed = 0;
 	int			i;
 
-	if (freed)
-		return ;
+	m = get_memory();
+	if (m->input)
+	{
+		i = 0;
+		while (m->input[i])
+		{
+			free(m->input[i]);
+			i++;
+		}
+		free(m->input);
+	}
+	if (m->map)
+	{
+		i = 0;
+		while (m->map[i])
+		{
+			free(m->map[i]);
+			i++;
+		}
+		free(m->map);
+	}
+}
+
+void	free_resources(void)
+{
+	t_memory	*m;
+
 	m = get_memory();
 	if (m->resources)
 	{
@@ -31,18 +55,20 @@ void	free_memory(void)
 			free(m->resources->west_texture);
 		if (m->resources->east_texture)
 			free(m->resources->east_texture);
-		if (m->map)
-		{
-			i = 0;
-			while (m->map[i])
-			{
-				free(m->map[i]);
-				i++;
-			}
-			free(m->map);
-		}
+		free_map();
 		free(m->resources);
 	}
+}
+
+void	free_memory(void)
+{
+	t_memory	*m;
+	static int	freed = 0;
+
+	if (freed)
+		return ;
+	m = get_memory();
+	free_resources();
 	if (m->player_pos)
 		free(m->player_pos);
 	destroy(m);

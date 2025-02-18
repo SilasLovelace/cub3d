@@ -6,11 +6,21 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/17 13:59:11 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:00:44 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static int	is_valid_map_name(char *map_name)
+{
+	char	*last_dot;
+
+	last_dot = ft_strrchr(map_name, '.');
+	return (last_dot && ft_strncmp(last_dot, ".cub", 4) == 0
+		&& last_dot[4] == '\0' && ft_strlen(map_name) > 4
+		&& *(last_dot - 1) != '/');
+}
 
 int	main(int ac, char **av)
 {

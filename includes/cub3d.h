@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:38:05 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/11 11:36:27 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:49:58 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 # include <fcntl.h>
 # include <math.h>
 # include <sys/time.h>
+# include <stdbool.h>
 
 #endif

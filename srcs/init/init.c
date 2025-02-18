@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 13:20:42 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 16:00:30 by sopperma         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/02/18 11:07:30 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/cub3d.h"
 

@@ -6,11 +6,21 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:59:40 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/10 18:49:20 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:52:49 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+static void	destroy_image_by_type(int type)
+{
+	if (get_memory()->mlx_data->textures[type].img)
+	{
+		mlx_destroy_image(get_memory()->mlx_data->mlx, \
+			get_memory()->mlx_data->textures[type].img);
+		get_memory()->mlx_data->textures[type].img = NULL;
+	}
+}
 
 void	destroy_images(t_memory *memory)
 {
@@ -19,30 +29,10 @@ void	destroy_images(t_memory *memory)
 		mlx_destroy_image(memory->mlx_data->mlx, memory->mlx_data->img);
 		memory->mlx_data->img = NULL;
 	}
-	if (memory->mlx_data->textures[NORTH].img)
-	{
-		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[NORTH].img);
-		memory->mlx_data->textures[NORTH].img = NULL;
-	}
-	if (memory->mlx_data->textures[SOUTH].img)
-	{
-		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[SOUTH].img);
-		memory->mlx_data->textures[SOUTH].img = NULL;
-	}
-	if (memory->mlx_data->textures[WEST].img)
-	{
-		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[WEST].img);
-		memory->mlx_data->textures[WEST].img = NULL;
-	}
-	if (memory->mlx_data->textures[EAST].img)
-	{
-		mlx_destroy_image(memory->mlx_data->mlx, \
-			memory->mlx_data->textures[EAST].img);
-		memory->mlx_data->textures[EAST].img = NULL;
-	}
+	destroy_image_by_type(NORTH);
+	destroy_image_by_type(SOUTH);
+	destroy_image_by_type(WEST);
+	destroy_image_by_type(EAST);
 }
 
 void	destroy(t_memory *memory)
