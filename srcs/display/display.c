@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 08:41:32 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 17:42:42 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:23:06 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,10 @@ void	display(void)
 	t_memory	*memory;
 
 	memory = get_memory();
-    ft_bzero(memory->mlx_data->addr, 
-        memory->mlx_data->resolution_x * memory->mlx_data->resolution_y * 
-        (memory->mlx_data->bpp / 8));
+	ft_bzero(memory->mlx_data->addr, \
+		memory->mlx_data->resolution_x * memory->mlx_data->resolution_y \
+		* (memory->mlx_data->bpp / 8));
 	cast_rays();
 	mlx_put_image_to_window(memory->mlx_data->mlx, memory->mlx_data->window, \
 		memory->mlx_data->img, 0, 0);
-	// printf("Player position: %f, %f\n", memory->player_pos->x, 
-	// 	memory->player_pos->y);
-	// printf("Player direction: %f, %f\n", memory->player_pos->dir_x, 
-	// 	memory->player_pos->dir_y);
 }
