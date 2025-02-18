@@ -34,6 +34,7 @@ SRCS		= \
 			$(SRCSDIR)/display/display.c \
 			$(SRCSDIR)/close/close.c \
 			$(SRCSDIR)/raycaster/raycaster.c \
+			$(SRCSDIR)/raycaster/raycaster_utils.c \
 
 OBJSDIR		= objs
 OBJS		= $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 12:02:12 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:03:54 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,12 @@ int			close_game_error(void);
 void		destroy(t_memory *memory);
 
 //raycaster/raycaster.c
-void		get_texture_dimensions(char *filepath);
 void		cast_rays(void);
+
+//raycaster/raycaster_utils .c
+void		reset_ray_params(t_ray *ray, int parse_density);
+int			is_inbound(t_ray *ray);
+void		increment_step(t_ray *ray);
+int			get_mlx_img_pixel_color(t_texture *tex, int x, int y);
 
 #endif
