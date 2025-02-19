@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   makros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:40 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 11:26:05 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:36:14 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 // M_PI / 40
 # define ROT_SPEED 0.0785398
 # define PARSE_DENSITY 1000
+
+# define TEXTURE_SIZE 1024
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
+# define FOV 1.0471975512
 
 # define NORTH 0
 # define SOUTH 1

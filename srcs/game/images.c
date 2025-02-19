@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 11:50:45 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/18 11:51:14 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:29:46 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ static void	get_image_by_type(int type, char *tex)
 			tex, \
 			&memory->mlx_data->textures[type].width, \
 			&memory->mlx_data->textures[type].height);
+	if (memory->mlx_data->textures[type].width != TEXTURE_SIZE
+		|| memory->mlx_data->textures[type].height != TEXTURE_SIZE)
+	{
+		printf("Error. Texture size must be 1024x1024!\n");
+		close_game_error();
+	}
 }
 
 static void	get_image_data(int type)

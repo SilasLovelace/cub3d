@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:01:47 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 14:03:08 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:36:48 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	reset_ray_params(t_ray *ray, int parse_density)
 	mem = get_memory();
 	if (ray->ray_num == 0)
 	{
-		ray->angle_per_pixel = M_PI / 3 / mem->mlx_data->resolution_x;
+		ray->angle_per_pixel = FOV / mem->mlx_data->resolution_x;
 		ray->angle = mem->player_pos->angle - M_PI / 6;
 	}
 	ray->ray_x = mem->player_pos->x;

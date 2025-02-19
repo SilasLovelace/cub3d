@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 15:10:14 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:36:22 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ int	parse_map(char **av)
 	resources_full = 0;
 	line = 0;
 	get_memory()->input = read_file_lines(av[1]);
-	if (!get_memory()->input)
+	if (!get_memory()->input || !get_memory()->input[0])
 		return (free_memory(), \
-			printf("Error! Could not read file: %s\n", av[1]), 1);
+			printf("Error! Invalid File name or empty File: %s\n", av[1]), 1);
 	temp = get_memory()->input;
 	while (temp[line])
 	{

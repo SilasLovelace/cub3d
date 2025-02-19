@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:20:42 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/18 17:47:24 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:30:32 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_memory	*get_memory(void)
 		memory->keys = ft_calloc(sizeof(t_keys), 1);
 		if (!memory->keys)
 			return (free_addr(memory));
-		memory->mlx_data->resolution_x = 1920;
-		memory->mlx_data->resolution_y = 1080;
+		memory->mlx_data->resolution_x = SCREEN_WIDTH;
+		memory->mlx_data->resolution_y = SCREEN_HEIGHT;
 		memory->resources->ceiling_color = -1;
 		memory->resources->floor_color = -1;
 	}

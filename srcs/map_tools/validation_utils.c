@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:46:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/18 09:46:43 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:34:02 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	parse_number(char *str, char term)
 		str++;
 		i++;
 	}
-	if (i > 3 || (*str != term && *str != '\n') || ft_atoi(start) > 255)
+	if (i > 3 || i == 0 || (*str != term && *str != '\n')
+		|| ft_atoi(start) > 255)
 		return (-1);
 	return (i);
 }
