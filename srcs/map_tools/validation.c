@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:59:19 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/18 11:00:11 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 09:02:45 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_chars(char **map, int i, int j)
 {
 	if (!ft_strchr("01NSEW\n", map[i][j]))
 	{
-		printf("Error! Invalid character '%c' at line %d, \
+		printf("Error\nInvalid character '%c' at line %d, \
 			position %d\n", map[i][j], i + 1, j + 1);
 		return (0);
 	}
@@ -27,7 +27,7 @@ static int	check_player(int *player_found, char **map, int i, int j)
 {
 	if (*player_found)
 	{
-		printf("Error! Multiple players found at line %d, \
+		printf("Error\nMultiple players found at line %d, \
 			position %d\n", i + 1, j + 1);
 		return (0);
 	}
@@ -40,7 +40,7 @@ static int	check_borders(char **map, int i, int j)
 {
 	if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1])
 	{
-		printf("Error! Map not closed at line %d, \
+		printf("Error\nMap not closed at line %d, \
 			position %d\n", i + 1, j + 1);
 		return (0);
 	}
@@ -51,7 +51,7 @@ static int	check_borders(char **map, int i, int j)
 		|| map[i][j - 1] == ' ' || (map[i][j + 1] == ' '
 		|| map[i][j + 1] == '\n'))
 	{
-		printf("Error! Map not properly closed at line %d, position %d\n", \
+		printf("Error\nMap not properly closed at line %d, position %d\n", \
 		i + 1, j + 1);
 		return (0);
 	}
@@ -104,7 +104,7 @@ int	is_valid_map(char **map)
 	}
 	if (!player_found)
 	{
-		printf("Error! No player found in map\n");
+		printf("Error\nNo player found in map\n");
 		return (0);
 	}
 	return (1);

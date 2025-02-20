@@ -6,14 +6,14 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:38:05 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 09:49:58 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 09:50:57 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "makros.h"
+# include "macros.h"
 # include "functions.h"
 # include "../libft/libft.h"
 // # include "../minilibx-linux/mlx.h"

@@ -1,4 +1,4 @@
-NO textures/test/forbidden.xpm
+NO ./textures/test/forbidden.xpm
 SO ./textures/test/S.xpm
 WE ./textures/test/W.xpm
 EA ./textures/test/E.xpm

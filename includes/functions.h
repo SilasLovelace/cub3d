@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:36 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 15:50:34 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:01:22 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ t_memory	*get_memory(void);
 //freeing/freeing.c
 void		free_memory(void);
 
-//test_tools/print_states.c
-// void		print_memory(void);
-
 //map_tools/utils.c
 char		*find_next_comma(char *str);
 char		*skip_whitespace(char *str);
@@ -37,7 +34,7 @@ int			is_valid_map(char **map);
 int			is_valid_resource(char *line);
 
 //map_tools/create_map.c
-void		cut_and_fill_map(void);
+void		create_map(void);
 
 //map_tools/map_parser.c
 int			parse_map(char **av);

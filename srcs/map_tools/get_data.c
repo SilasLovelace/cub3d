@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:07:16 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/13 14:07:22 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 09:02:23 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**get_resource_dest(char *identifier)
 			&& get_memory()->resources->west_texture)
 		|| (!ft_strncmp(identifier, "EA ", 3)
 			&& get_memory()->resources->east_texture))
-		printf("Error! Multiple definitions for the same element: \
+		printf("Error\nMultiple definitions for the same element: \
 			%s\n", identifier);
 	return (NULL);
 }
@@ -51,7 +51,7 @@ int	*get_color_dest(char *identifier)
 			&& get_memory()->resources->ceiling_color != -1)
 		|| (!ft_strncmp(identifier, "F ", 2)
 			&& get_memory()->resources->floor_color != -1))
-		printf("Error! Multiple definitions for the same element: \
+		printf("Error\nMultiple definitions for the same element: \
 			%s\n", identifier);
 	return (NULL);
 }

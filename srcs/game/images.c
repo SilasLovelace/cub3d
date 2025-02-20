@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 11:50:45 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/19 15:29:46 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 09:47:33 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,15 @@ static void	get_image_by_type(int type, char *tex)
 			tex, \
 			&memory->mlx_data->textures[type].width, \
 			&memory->mlx_data->textures[type].height);
+	if (!memory->mlx_data->textures[type].img)
+	{
+		printf("Error\nTexture allocation failed\n");
+		close_game_error();
+	}
 	if (memory->mlx_data->textures[type].width != TEXTURE_SIZE
 		|| memory->mlx_data->textures[type].height != TEXTURE_SIZE)
 	{
-		printf("Error. Texture size must be 1024x1024!\n");
+		printf("Error\nTexture size must be 1024x1024!\n");
 		close_game_error();
 	}
 }
@@ -51,14 +56,6 @@ void	take_images(void)
 	get_image_by_type(SOUTH, memory->resources->south_texture);
 	get_image_by_type(WEST, memory->resources->west_texture);
 	get_image_by_type(EAST, memory->resources->east_texture);
-	if (!memory->mlx_data->textures[NORTH].img
-		|| !memory->mlx_data->textures[SOUTH].img
-		|| !memory->mlx_data->textures[WEST].img
-		|| !memory->mlx_data->textures[EAST].img)
-	{
-		printf("Error\nTexture allocation failed\n");
-		close_game_error();
-	}
 	get_image_data(NORTH);
 	get_image_data(SOUTH);
 	get_image_data(WEST);

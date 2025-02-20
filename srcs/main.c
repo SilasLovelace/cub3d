@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 18:09:40 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 09:01:48 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 			run_game();
 		}
 		else
-			return (printf("Error! Invalid map name: %s\n", av[1]), 1);
+			return (printf("Error\nInvalid map name: %s\n", av[1]), 1);
 		free_memory();
 	}
 	else

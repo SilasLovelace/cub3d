@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   makros.h                                           :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:26:40 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/19 15:36:14 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 09:50:44 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAKROS_H
-# define MAKROS_H
+#ifndef MACROS_H
+# define MACROS_H
 
 # define SPEED 0.2
 # define STEP_SIZE 0.1
@@ -22,6 +22,7 @@
 # define TEXTURE_SIZE 1024
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
+// M_PI / 3
 # define FOV 1.0471975512
 
 # define NORTH 0
