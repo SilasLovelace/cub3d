@@ -3,151 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:43:48 by sopperma          #+#    #+#             */
-/*   Updated: 2025/01/27 18:10:00 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:01:33 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
-char*	find_next_comma(char* str)
+static void	calculate_map_dimensions(void)
 {
-	while (*str && *str != ',')
-		str++;
-	return (str);
-}
+	t_memory	*memory;
+	int			max_width;
+	int			height;
+	int			current_width;
 
-char* skip_whitespace(char* str)
-{
-	while (*str && *str == ' ')
-		str++;
-	return (str);
-}
-
-char* skip_non_whitespace(char* str)
-{
-	while (*str && *str != ' ')
-		str++;
-	return (str);
-}
-
-int	is_valid_map_name(char* map_name)
-{
-	char *last_dot;
-	last_dot = ft_strrchr(map_name, '.');
-	return (last_dot && ft_strncmp(last_dot, ".cub", 4) == 0 && last_dot[4] == '\0' && ft_strlen(map_name) > 4 && *(last_dot - 1) != '/');
-}
-
-char	**get_resource_dest(char *identifier)
-{
-	if (!ft_strncmp(identifier, "NO ", 3) && get_memory()->resources->north_texture == NULL)
-		return (&(get_memory()->resources->north_texture));
-	if (!ft_strncmp(identifier, "SO ", 3) && get_memory()->resources->south_texture == NULL)
-		return (&(get_memory()->resources->south_texture));
-	if (!ft_strncmp(identifier, "WE ", 3) && get_memory()->resources->west_texture == NULL)
-		return (&(get_memory()->resources->west_texture));
-	if (!ft_strncmp(identifier, "EA ", 3) && get_memory()->resources->east_texture == NULL)
-		return (&(get_memory()->resources->east_texture));
-	if ((!ft_strncmp(identifier, "NO ", 3) && get_memory()->resources->north_texture)
-		|| (!ft_strncmp(identifier, "SO ", 3) && get_memory()->resources->south_texture)
-		|| (!ft_strncmp(identifier, "WE ", 3) && get_memory()->resources->west_texture)
-		|| (!ft_strncmp(identifier, "EA ", 3) && get_memory()->resources->east_texture))
-		printf("Error! Multiple definitions for the same element: %s\n", identifier);
-	return (NULL);
-}
-
-int	*get_color_dest(char *identifier)
-{
-	if (!ft_strncmp(identifier, "C ", 2) && get_memory()->resources->ceiling_color == -1)
-		return (&(get_memory()->resources->ceiling_color));
-	if (!ft_strncmp(identifier, "F ", 2) && get_memory()->resources->floor_color == -1)
-		return (&(get_memory()->resources->floor_color));
-	if ((!ft_strncmp(identifier, "C ", 2) && get_memory()->resources->ceiling_color != -1)
-		|| (!ft_strncmp(identifier, "F ", 2) && get_memory()->resources->floor_color != -1))
-		printf("Error! Multiple definitions for the same element: %s\n", identifier);
-	return (NULL);
-}
-int parse_number(char* str, char term)
-{
-	int i;
-	char	*start;
-	
-	i = 0;
-	start = str;
-	while (*str && ft_isdigit(*str))
+	memory = get_memory();
+	max_width = 0;
+	height = 0;
+	while (memory->input[height])
 	{
-		str++;
-		i++;
+		current_width = ft_strlen(memory->input[height]);
+		if (current_width > max_width)
+			max_width = current_width;
+		height++;
 	}
-	if (i > 3 || (*str != term && *str != '\n') || ft_atoi(start) > 255)
-		return (-1);
-	return (i);
+	memory->resources->map_width = max_width;
+	memory->resources->map_height = height - memory->map_start_row;
 }
 
-int	is_valid_RGB(char *str)
+static bool	check_resources(int resources_full)
 {
-	int		color;
-	
-	if (parse_number(str, ',') >= 0)
+	return (!resources_full
+		&& get_memory()->resources->north_texture
+		&& get_memory()->resources->south_texture
+		&& get_memory()->resources->west_texture
+		&& get_memory()->resources->east_texture
+		&& get_memory()->resources->ceiling_color != -1
+		&& get_memory()->resources->floor_color != -1);
+}
+
+static int	copy_map(char **temp, int line)
+{
+	if (is_valid_map(temp + line))
 	{
-		color = ft_atoi(str) * 256 * 256;
-		str += parse_number(str, ',') + 1;
+		get_memory()->map_start_row = line;
+		calculate_map_dimensions();
+		create_map();
+		return (0);
 	}
 	else
-		return (-1);
-	if (parse_number(str, ',') >= 0)
-	{
-		color += ft_atoi(str) * 256 ;
-		str += parse_number(str, ',') + 1;
-	}
-	else
-		return (-1);
-	if (parse_number(str, ' ') >= 0)
-		color += ft_atoi(str);
-	else
-		return (-1);
-	return (color);
+		return (1);
 }
 
-int is_valid_resource(char* line)
+static int	process_map(int resources_full, char **temp, int *line)
 {
-	char*	first_non_ws;
-	char*	begin_info;
-	char*	end_info;
-	
-	first_non_ws = skip_whitespace(line);
-	if (!ft_strncmp(first_non_ws, "NO ", 3)
-	|| !ft_strncmp(first_non_ws, "SO ", 3)
-	|| !ft_strncmp(first_non_ws, "WE ", 3)
-	|| !ft_strncmp(first_non_ws, "EA ", 3))
+	if (resources_full == 0)
 	{
-		begin_info = skip_whitespace(first_non_ws + 2);
-		if (!ft_strncmp(begin_info, "./", 2) && *(begin_info + 2) != ' ')
+		if (is_valid_resource(temp[*line]) || *(temp[*line]) == '\n')
+			(*line)++;
+		else
 		{
-			end_info = skip_non_whitespace(begin_info + 2);
-			if (!(*(end_info) == '\0' || *skip_whitespace(end_info) == '\n') || !get_resource_dest(first_non_ws))
-				return (0);
-			*(char**)get_resource_dest(first_non_ws) = ft_substr(begin_info, 0, end_info - begin_info);
-			return (1);
+			printf("Error\nInvalid resource: %s on line %d\n", \
+				temp[*line], *line + 1);
+			return (free_memory(), 1);
 		}
-		return (0);
 	}
-	else if (!ft_strncmp(first_non_ws, "C ", 2)
-	|| !ft_strncmp(first_non_ws, "F ", 2))
+	if (resources_full == 1)
 	{
-		begin_info = skip_whitespace(first_non_ws + 1);
-		if (is_valid_RGB(begin_info) >= 0)
-		{
-			end_info = skip_non_whitespace(begin_info);
-			if (!(*(end_info) == '\0' || *skip_whitespace(end_info) == '\n') || !get_color_dest(first_non_ws))
-				return (0);
-			*get_color_dest(first_non_ws) = is_valid_RGB(begin_info);
-			return (1);
-		}
-		return (0);
+		while (temp[*line] && temp[*line][0] == '\n' )
+			(*line)++;
+		if (copy_map(temp, *line))
+			return (printf("Error\nInvalid map\n"), 1);
+		return (2);
 	}
-	else
-		return (0);
+	return (0);
+}
+
+int	parse_map(char **av)
+{
+	int		resources_full;
+	int		line;
+	char	**temp;
+	int		res;
+
+	resources_full = 0;
+	line = 0;
+	get_memory()->input = read_file_lines(av[1]);
+	if (!get_memory()->input || !get_memory()->input[0])
+		return (free_memory(), \
+			printf("Error\nInvalid File name or empty File: %s\n", av[1]), 1);
+	temp = get_memory()->input;
+	while (temp[line])
+	{
+		res = process_map(resources_full, temp, &line);
+		if (res == 1)
+			return (1);
+		if (res == 2)
+			break ;
+		if (check_resources(resources_full))
+			resources_full = 1;
+	}
+	return (0);
 }
