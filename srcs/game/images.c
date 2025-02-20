@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 11:50:45 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/20 09:47:33 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:06:50 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	get_image_by_type(int type, char *tex)
 			&memory->mlx_data->textures[type].height);
 	if (!memory->mlx_data->textures[type].img)
 	{
-		printf("Error\nTexture allocation failed\n");
+		printf("Error\nImage creation failed\n");
 		close_game_error();
 	}
 	if (memory->mlx_data->textures[type].width != TEXTURE_SIZE
