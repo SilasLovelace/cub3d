@@ -6,7 +6,7 @@
 /*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:59:40 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/17 17:52:49 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:51:01 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ void	destroy(t_memory *memory)
 
 int	close_game(void)
 {
-	t_memory	*memory;
-
-	memory = get_memory();
 	free_memory();
 	exit(0);
 	return (0);
@@ -63,9 +60,6 @@ int	close_game(void)
 
 int	close_game_error(void)
 {
-	t_memory	*memory;
-
-	memory = get_memory();
 	free_memory();
 	exit(1);
 	return (1);

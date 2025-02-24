@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_reader.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:37:09 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/20 09:02:14 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:51:25 by sopperma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ char	**read_file_lines(const char *filename)
 	int		fd;
 	char	**lines;
 	int		line_count;
-	bool	flag;
 
-	flag = false;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
