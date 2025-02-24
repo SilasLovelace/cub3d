@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:22:39 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/18 12:06:43 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:35:34 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	init_data(void)
 	if (!memory->mlx_data->mlx)
 	{
 		printf("Error\nMLX initialization failed\n");
-		return ;
+		close_game_error();
 	}
 	take_images();
 	memory->mlx_data->window = mlx_new_window(memory->mlx_data->mlx, \
@@ -58,10 +58,7 @@ static void	init_data(void)
 	if (!memory->mlx_data->window)
 	{
 		printf("Error\nWindow creation failed\n");
-		mlx_destroy_display(memory->mlx_data->mlx);
-		free(memory->mlx_data->mlx);
-		memory->mlx_data->mlx = NULL;
-		return ;
+		close_game_error();
 	}
 }
 

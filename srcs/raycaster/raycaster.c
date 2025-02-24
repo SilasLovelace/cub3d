@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopperma <sopperma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:37:23 by tkafanov          #+#    #+#             */
-/*   Updated: 2025/02/18 14:04:16 by sopperma         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:36:32 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <stdio.h>
 
 static void	find_texture_intersect(t_ray *ray, t_memory *mem)
 {

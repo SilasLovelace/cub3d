@@ -6,7 +6,7 @@
 /*   By: tkafanov <tkafanov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:03 by sopperma          #+#    #+#             */
-/*   Updated: 2025/02/18 11:35:51 by tkafanov         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:04:42 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int ac, char **av)
 {
 	if (ac == 2)
 	{
-		get_memory();
+		if (get_memory() == NULL)
+			return (printf("Error\nMemory allocation failed\n"), 1);
 		if (is_valid_map_name(av[1]))
 		{
 			if (parse_map(av))
@@ -34,7 +35,8 @@ int	main(int ac, char **av)
 			run_game();
 		}
 		else
-			return (printf("Error! Invalid map name: %s\n", av[1]), 1);
+			return (printf("Error\nInvalid map name: %s\n", av[1]), \
+			free_memory(), 1);
 		free_memory();
 	}
 	else
